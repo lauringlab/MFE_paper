@@ -1,0 +1,75 @@
+---
+title: "MFE distributions Maximum likelihood"
+author: "JT McCrone"
+date: "April 22, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(plyr)
+require(bbmle)
+require(ggplot2)
+theme_set(new = theme_classic()+ theme(
+axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'),
+axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'))) # to make nice plots
+```
+
+
+In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley _et. al_ until the influenza data is ready.
+
+```{r,the_data}
+
+data.df<-read.csv("../data/AshleyFig4.csv",stringsAsFactors = F)
+
+ggplot(data.df,aes(x=Fitness))+geom_histogram()
+```
+
+To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. If I understand the paper correctly they just model the distribution of the negative effects (<1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
+
+I'll subset the data above to include the non-lethal negative fitnesses
+```{r}
+model.df<-subset(data.df,Fitness>0 & Fitness<1)
+ggplot(model.df,aes(x=Fitness))+geom_histogram()
+```
+
+### Gamma
+I'll start by modeling a gamma distribution. To get the ground work laid out.
+
+When we estimate parameters using maximum likelihood we need a function that reports the likelihood of seeing the data given a certain distribution. Instead of maximizing likelihood we usually minimize the negative of the log likelihood but it all amounts to the same thing.
+
+```{r,gamma}
+gammaNLL<-function(shape,scale){ # gamma negative log likelihood
+  -sum(dgamma(model.df$Fitness,shape=shape,scale=scale,log=T)) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+}
+```
+
+We'll use the method of momements to get an idea for a good starting point. The gamma distribution takes 2 parameters shape and scale. Shape = mean^2^/variance | Scale = variance/mean
+
+```{r}
+m=mean(model.df$Fitness)
+vm=var(model.df$Fitness)/mean(model.df$Fitness)
+
+gammamodel<-mle2(gammaNLL,start=list(shape = m/vm, scale = vm))
+gammamodel
+AIC(gammamodel,k=2)
+```
+
+### Beta
+
+Now we'll try the beta.
+
+```{r}
+betaNLL<-function(a,b){
+  -sum(dbeta(model.df$Fitness,shape1=a,shape2=b,log=T))
+}
+```
+
+Getting to good starting points is a little trickier here. For now I'll start with 5. But we'll want to formalize this later.
+
+```{r}
+betamodel<-mle2(betaNLL,start=list(a = 5, b = 5))
+betamodel
+AIC(betamodel,k=2)
+#plot(profile(betamodel))
+```
