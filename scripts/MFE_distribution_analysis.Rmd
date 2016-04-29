@@ -1,4 +1,5 @@
 ---
+---
 title: "MFE distribution analysis"
 author: "Shawn Whitefield"
 date: "April 28, 2016"
@@ -140,19 +141,18 @@ length(Big_fitness_df$fitness)
   #yup! they are
 
 #MAKE HISTOGRAM that we don't need
-ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
+all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
   geom_freqpoly(binwidth = .1)+
-  theme_classic()
+  theme_classic())
+plot(all_hist)
 
 # Flu only histogram that we also don't need
 flu_fitness<-as.data.frame(c(flu_total.CDF,flu_random.CDF,flu_surface.CDF,flu_internal.CDF))
 colnames(flu_fitness)<-"fitness"
 flu_fitness$virus<-names(c(flu_total.CDF,flu_random.CDF,flu_surface.CDF,flu_internal.CDF))
 
-ggplot(flu_fitness, aes(fitness, ..density.., colour = virus)) +
+flu_hist<-(ggplot(flu_fitness, aes(fitness, ..density.., colour = virus)) +
   geom_freqpoly(binwidth = .1)+
-  theme_classic()
-
-```
-
+  theme_classic())
+plot(flu_hist)
 
