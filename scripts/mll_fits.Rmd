@@ -20,16 +20,17 @@ In this document we'll try to fit the distribution of the MFE using maximum like
 
 ```{r,the_data}
 
-data.df<-read.csv("../data/AshleyFig4.csv",stringsAsFactors = F)
+data.df<-read.csv("../data/flu.csv",stringsAsFactors = F)
 
-ggplot(data.df,aes(x=Fitness))+geom_histogram()
+ggplot(data.df,aes(x=Total.Hist))+geom_histogram()
 ```
 
 To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. If I understand the paper correctly they just model the distribution of the negative effects (<1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
 
 I'll subset the data above to include the non-lethal negative fitnesses
 ```{r}
-model.df<-subset(data.df,Fitness>0 & Fitness<1)
+model.df<-mutate(data.df,Fitness=Total.CDF) # change this to other columns if you'd like to model those as well.
+model.df<-subset(model.df,Fitness>0 & Fitness<1)
 ggplot(model.df,aes(x=Fitness))+geom_histogram()
 ```
 
@@ -53,6 +54,8 @@ vm=var(model.df$Fitness)/mean(model.df$Fitness)
 gammamodel<-mle2(gammaNLL,start=list(shape = m/vm, scale = vm))
 gammamodel
 AIC(gammamodel,k=2)
+
+
 ```
 
 ### Beta
@@ -73,3 +76,68 @@ betamodel
 AIC(betamodel,k=2)
 #plot(profile(betamodel))
 ```
+
+
+### Weibull
+
+```{r}
+WeibullNLL<-function(a,b){
+    -sum(dweibull(model.df$Fitness,shape=a,scale=b,log=T))
+
+}
+
+weibullmodel<-mle2(WeibullNLL,start=list(a = 5, b = 5))
+weibullmodel
+AIC(weibullmodel,k=2)
+```
+
+
+###Lognormal
+
+```{r}
+lognormalNLL<-function(a,b){
+    -sum(dlnorm(model.df$Fitness,meanlog=a,sdlog = b,log=T))
+
+}
+
+lnormmodel<-mle2(lognormalNLL,start=list(a = mean(log(model.df$Fitness)), b = sd(log(model.df$Fitness))))
+lnormmodel
+AIC(lnormmodel,k=2)
+
+```
+
+
+###Exponential
+
+```{r}
+expNLL<-function(a){
+  -sum(dexp(model.df$Fitness,rate=a,log=T))
+}
+
+expmodel<-mle2(expNLL,start=list(a = 1/mean(model.df$Fitness)))
+expmodel
+AIC(expmodel,k=1)
+
+
+```
+
+## Adding uniform distributions
+
+In this analyis we add a uniform distribution. We ARE NOT letting the parameters vary but rather are letting a proportion of the variants fall on a uniform distribution between 0 and some parameter b.
+
+### Gamma + uniform
+
+```{r,gamma}
+gammaUniNLL<-function(a,b,p,m){ # gamma negative log likelihood
+  -sum(log(p*dgamma(model.df$Fitness,shape=a,scale=b)+(1-p)*dunif(model.df$Fitness,0,m))) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+}
+
+m=mean(model.df$Fitness)
+vm=var(model.df$Fitness)/mean(model.df$Fitness)
+
+gammaUniModel<-mle2(gammaUniNLL,start=list(a = m/vm, b = vm,p=0.5,m=0.2))
+gammaUniModel
+AIC(gammaUniModel,k=4)
+
+```
+
