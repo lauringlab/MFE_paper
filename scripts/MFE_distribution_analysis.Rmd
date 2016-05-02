@@ -135,6 +135,24 @@ setwd("~/Desktop/viral_fitness_dist_analysis/")
   mean(flu_surface.CDF)
   mean(flu_internal.CDF)
 
+
+#compare mean fitness for flu only
+#total but does not make sense to do this test since these are all a subset of total:
+t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_random.CDF)
+t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_surface.CDF)
+t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+
+  #none are significantly different
+#random
+t.test(Big_fitness_df$fitness==flu_random.CDF, Big_fitness_df$fitness==flu_surface.CDF)
+t.test(Big_fitness_df$fitness==flu_random.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+#surface
+t.test(Big_fitness_df$fitness==flu_surface.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+  #none are significantly different
+
+#ALL SUBSETS ARE THE SAME! CRAZY!
+
+
 ```{r}
 
 ```
@@ -151,6 +169,7 @@ Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF
 sum(Big_fitness_df$fitness > -1)
 length(Big_fitness_df$fitness)
   #yup! they are
+
 
 #MAKE HISTOGRAM that we don't need
 all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
