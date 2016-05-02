@@ -124,6 +124,16 @@ setwd("~/Desktop/viral_fitness_dist_analysis/")
   kurtosis(flu_surface.CDF)
   kurtosis(flu_internal.CDF)
 
+# MEAN
+  mean(phiX.CDF)
+  mean(QB.CDF)
+  mean(TEV.CDF)
+  mean(polio.CDF)
+  mean(flu_total.CDF)
+  mean(flu_random.CDF)
+  mean(flu_surface.CDF)
+  mean(flu_internal.CDF)
+
 ```{r}
 
 ```
