@@ -1,0 +1,171 @@
+---
+title: "Untitled"
+author: "Shawn Whitefield"
+date: "May 2, 2016"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+##This is an R Markdown document for the MFE distribution analysis.
+
+##### load in packages for analysis
+```{r}
+# LOAD PACKAGES
+library(moments)
+library(nortest)
+library(lattice)
+library(qpcR)
+library(plyr)
+library(ggplot2)
+library(tidyr)
+
+
+
+```
+
+##### read in the parsed data files as dataframes
+
+```{r}
+
+# READ IN FITNESS DATA FOR EACH VIRUS
+  
+  #polio
+    #already represented as fitness
+  polio_fitness_df<-read.csv("~/Desktop/scripts/data/AshleyFig4.csv")
+  polio_fitness_df$virus <-"polio"
+  polio_fitness_df$fitness <-polio_fitness_df$Fitness
+
+  #these viruses are in therms of S so need to add 1
+  #TEV
+  TEV_fitness_df<-read.csv("~/Desktop/scripts/data/TEV_parsing.csv")
+  TEV_fitness_df$s<-sub("\\(.*$","",TEV_fitness_df$Relative_fitness) #add column for fitness
+  TEV_fitness_df$fitness<-(as.numeric(TEV_fitness_df$s))+1
+  TEV_fitness_df$virus<-"TEV"
+  
+  #QB 
+  QB_fitness_df<-read.csv("~/Desktop/scripts/data/QB_parsed.csv")
+  QB_fitness_df$virus <- "QB"
+  QB_fitness_df$fitness<-1+(QB_fitness_df$relative_fitness)
+
+  #phiX174 
+  phiX174_fitness_df<-read.csv("~/Desktop/scripts/data/phi_x_174_parsed.csv")
+  phiX174_fitness_df$virus<-"phix174"
+  phiX174_fitness_df$fitness<-1+(phiX174_fitness_df$relative_fitness)
+
+  # Flu 
+    #there are 6 datasets here
+    # +/- lethal fraction for:
+      #1. All
+      #2. HA + NA
+      #3  External segments
+  flu_fitness_df<- read.csv("~/Desktop/scripts/data/flu.csv")
+
+
+```
+#####Examine Skew and Kurtosis in non-lethal fraction
+```{r}
+  #shorter variable names and remove lethal fractions
+    phiX<-phiX174_fitness_df$fitness
+    names(phiX)<-c(rep("phiX",length(phiX))) #name the vector
+      phiX.CDF<-phiX[phiX!=0]
+      
+    QB<-QB_fitness_df$fitness
+    names(QB)<-c(rep("QB",length(QB)))
+      QB.CDF<-QB[QB!=0]
+
+    TEV<-TEV_fitness_df$fitness
+    names(TEV)<-c(rep("TEV",length(TEV)))
+      TEV.CDF<-TEV[TEV!=0]
+
+    polio<-polio_fitness_df$fitness
+    names(polio)<-c(rep("polio",length(polio)))
+      polio.CDF<-polio[polio!=0]
+
+    # Without lethal fractions
+    flu_total.CDF<-flu_fitness_df$Total.CDF #all
+    flu_total.CDF<-subset(flu_total.CDF, flu_total.CDF > -10) # remove NAs by subsetting w/small #
+    names(flu_total.CDF)<-c(rep("flu_total_CDF",length(flu_total.CDF)))
+
+    flu_random.CDF<-flu_fitness_df$Random.CDF #this is all w/o lethal
+    flu_random.CDF<-subset(flu_random.CDF, flu_random.CDF > -10)
+    names(flu_random.CDF)<-c(rep("flu_random.CDF",length(flu_random.CDF)))
+
+    flu_surface.CDF<-flu_fitness_df$Surface.CDF #HA + NA
+    flu_surface.CDF<-subset(flu_surface.CDF, flu_surface.CDF > -10)
+    names(flu_surface.CDF)<-c(rep("flu_surface_CDF",length(flu_surface.CDF)))
+
+    flu_internal.CDF<-flu_fitness_df$Internal.CDF #internal
+    flu_internal.CDF<-subset(flu_internal.CDF, flu_internal.CDF > -10)
+    names(flu_internal.CDF)<-c(rep("flu_internal.CDF",length(flu_internal.CDF)))
+
+
+# EXAMINE SKEWNESS
+  skewness(phiX.CDF)
+  skewness(QB.CDF)
+  skewness(TEV.CDF)
+  skewness(polio.CDF)
+  skewness(flu_total.CDF)
+  skewness(flu_random.CDF)
+  skewness(flu_surface.CDF)
+  skewness(flu_internal.CDF)
+
+# EXAMINE KURTOSIS
+  kurtosis(phiX.CDF)
+  kurtosis(QB.CDF)
+  kurtosis(TEV.CDF)
+  kurtosis(polio.CDF)
+  kurtosis(flu_total.CDF)
+  kurtosis(flu_random.CDF)
+  kurtosis(flu_surface.CDF)
+  kurtosis(flu_internal.CDF)
+
+# MEAN
+  mean(phiX.CDF)
+  mean(QB.CDF)
+  mean(TEV.CDF)
+  mean(polio.CDF)
+  mean(flu_total.CDF)
+  mean(flu_random.CDF)
+  mean(flu_surface.CDF)
+  mean(flu_internal.CDF)
+
+
+#t-tests for mean fitness for flu only
+#surface vs internal is the only one that makes sense and is legit to to do since all others are subsets of each other, so they represent the same samples.
+t.test(flu_surface.CDF, flu_internal.CDF)
+
+#INTERNAL AND SURFACE DO NOT HAVE THE SAME MEAN FITNESS.
+
+```{r}
+
+```
+##### Histograms
+
+```{r}
+#make df with all of the CDF fitness
+
+Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
+colnames(Big_fitness_df)<-"fitness"
+Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
+
+#double check that these are only the non-lethals
+sum(Big_fitness_df$fitness > -1)
+length(Big_fitness_df$fitness)
+  #yup! they are
+
+#MAKE HISTOGRAM that we don't need but it is pretty
+all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
+  geom_freqpoly(binwidth = .1)+
+  theme_classic())
+plot(all_hist)
+
+flu_hist<-(ggplot(flu_fitness, aes(fitness, ..density.., colour = virus)) +
+  geom_freqpoly(binwidth = .1)+
+  theme_classic())
+plot(flu_hist)
+
+```
+
