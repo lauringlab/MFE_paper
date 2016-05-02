@@ -1,32 +1,56 @@
----
-title: "MFE distribution analysis"
-author: "Shawn Whitefield"
-date: "April 28, 2016"
-output:
-  html_document:
-    fig_caption: yes
-    keep_md: yes
----
+# MFE distribution analysis
+Shawn Whitefield  
+April 28, 2016  
 
 ##This is an R Markdown document for the MFE distribution analysis.
 
 ##### load in packages for analysis
-```{r}
+
+```r
 # LOAD PACKAGES
 library(moments)
 library(nortest)
 library(lattice)
 library(qpcR)
+```
+
+```
+## Loading required package: MASS
+```
+
+```
+## Loading required package: minpack.lm
+```
+
+```
+## Loading required package: rgl
+```
+
+```
+## Warning in rgl.init(initValue, onlyNULL): RGL: unable to open X11 display
+```
+
+```
+## Warning: 'rgl_init' failed, running with rgl.useNULL = TRUE
+```
+
+```
+## Loading required package: robustbase
+```
+
+```
+## Loading required package: Matrix
+```
+
+```r
 library(plyr)
 library(ggplot2)
-
-
-
 ```
 
 ##### read in the parsed data files as dataframes
 
-```{r}
+
+```r
 setwd("~/Desktop/viral_fitness_dist_analysis/")
 
 # READ IN FITNESS DATA FOR EACH VIRUS
@@ -64,12 +88,11 @@ setwd("~/Desktop/viral_fitness_dist_analysis/")
       #2. HA + NA
       #3  External segments
   flu_fitness_df<- read.csv("parsed_fitness_files/flu.csv")
-
-
 ```
 
 #####Examine Skew and Kurtosis in non-lethal fraction
-```{r}
+
+```r
   #shorter variable names and remove lethal fractions
     phiX<-phiX174_fitness_df$fitness
     names(phiX)<-c(rep("phiX",length(phiX))) #name the vector
@@ -107,40 +130,202 @@ setwd("~/Desktop/viral_fitness_dist_analysis/")
 
 # EXAMINE SKEWNESS
   skewness(phiX.CDF)
-  skewness(QB.CDF)
-  skewness(TEV.CDF)
-  skewness(polio.CDF)
-  skewness(flu_total.CDF)
-  skewness(flu_random.CDF)
-  skewness(flu_surface.CDF)
-  skewness(flu_internal.CDF)
-
-# EXAMINE KURTOSIS
-  kurtosis(phiX.CDF)
-  kurtosis(QB.CDF)
-  kurtosis(TEV.CDF)
-  kurtosis(polio.CDF)
-  kurtosis(flu_total.CDF)
-  kurtosis(flu_random.CDF)
-  kurtosis(flu_surface.CDF)
-  kurtosis(flu_internal.CDF)
-
-# MEAN
-  mean(phiX.CDF)
-  mean(QB.CDF)
-  mean(TEV.CDF)
-  mean(polio.CDF)
-  mean(flu_total.CDF)
-  mean(flu_random.CDF)
-  mean(flu_surface.CDF)
-  mean(flu_internal.CDF)
-
-```{r}
+```
 
 ```
+## [1] -1.873701
+```
+
+```r
+  skewness(QB.CDF)
+```
+
+```
+## [1] -1.110005
+```
+
+```r
+  skewness(TEV.CDF)
+```
+
+```
+## [1] 1.815592
+```
+
+```r
+  skewness(polio.CDF)
+```
+
+```
+## [1] -0.3176839
+```
+
+```r
+  skewness(flu_total.CDF)
+```
+
+```
+## [1] -1.170211
+```
+
+```r
+  skewness(flu_random.CDF)
+```
+
+```
+## [1] -1.120054
+```
+
+```r
+  skewness(flu_surface.CDF)
+```
+
+```
+## [1] -0.8869894
+```
+
+```r
+  skewness(flu_internal.CDF)
+```
+
+```
+## [1] -0.9867137
+```
+
+```r
+# EXAMINE KURTOSIS
+  kurtosis(phiX.CDF)
+```
+
+```
+## [1] 6.321138
+```
+
+```r
+  kurtosis(QB.CDF)
+```
+
+```
+## [1] 3.011725
+```
+
+```r
+  kurtosis(TEV.CDF)
+```
+
+```
+## [1] 6.51863
+```
+
+```r
+  kurtosis(polio.CDF)
+```
+
+```
+## [1] 3.461289
+```
+
+```r
+  kurtosis(flu_total.CDF)
+```
+
+```
+## [1] 3.901619
+```
+
+```r
+  kurtosis(flu_random.CDF)
+```
+
+```
+## [1] 3.479086
+```
+
+```r
+  kurtosis(flu_surface.CDF)
+```
+
+```
+## [1] 3.803445
+```
+
+```r
+  kurtosis(flu_internal.CDF)
+```
+
+```
+## [1] 2.980413
+```
+
+```r
+# MEAN
+  mean(phiX.CDF)
+```
+
+```
+## [1] 0.8739444
+```
+
+```r
+  mean(QB.CDF)
+```
+
+```
+## [1] 0.8972333
+```
+
+```r
+  mean(TEV.CDF)
+```
+
+```
+## [1] 1.513197
+```
+
+```r
+  mean(polio.CDF)
+```
+
+```
+## [1] 0.7467637
+```
+
+```r
+  mean(flu_total.CDF)
+```
+
+```
+## [1] 0.8268889
+```
+
+```r
+  mean(flu_random.CDF)
+```
+
+```
+## [1] 0.7979688
+```
+
+```r
+  mean(flu_surface.CDF)
+```
+
+```
+## [1] 0.8821951
+```
+
+```r
+  mean(flu_internal.CDF)
+```
+
+```
+## [1] 0.7806122
+```
+
 ##### Histograms
 
-```{r}
+
+```r
 #make df with all of the CDF fitness
 
 Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
@@ -149,16 +334,33 @@ Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF
 
 #double check that these are only the non-lethals
 sum(Big_fitness_df$fitness > -1)
-length(Big_fitness_df$fitness)
-  #yup! they are
+```
 
+```
+## [1] 6920
+```
+
+```r
+length(Big_fitness_df$fitness)
+```
+
+```
+## [1] 6920
+```
+
+```r
+  #yup! they are
 
 #MAKE HISTOGRAM that we don't need
 all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
   geom_freqpoly(binwidth = .1)+
   theme_classic())
 plot(all_hist)
+```
 
+![](./MFE_distribution_analysis_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+```r
 # Flu only histogram that we also don't need
 flu_fitness<-as.data.frame(c(flu_total.CDF,flu_random.CDF,flu_surface.CDF,flu_internal.CDF))
 colnames(flu_fitness)<-"fitness"
@@ -168,7 +370,8 @@ flu_hist<-(ggplot(flu_fitness, aes(fitness, ..density.., colour = virus)) +
   geom_freqpoly(binwidth = .1)+
   theme_classic())
 plot(flu_hist)
-
 ```
+
+![](./MFE_distribution_analysis_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
 
 
