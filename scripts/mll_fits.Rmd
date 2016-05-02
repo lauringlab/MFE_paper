@@ -125,19 +125,57 @@ AIC(expmodel,k=1)
 
 In this analyis we add a uniform distribution. We ARE NOT letting the parameters vary but rather are letting a proportion of the variants fall on a uniform distribution between 0 and some parameter b.
 
+
+###Exponential + uniform
+
+```{r}
+expUniNLL<-function(a,p,m){
+  -sum(log(p*dexp(model.df$Fitness,rate=a)+(1-p)*dunif(model.df$Fitness,0,m)))
+}
+
+expUnimodel<-mle2(expUniNLL,start=list(a = 1/mean(model.df$Fitness),p=0.5,m=0.5),method="L-BFGS-B",lower=c(0,0,0),upper=c(100,1,1))
+expUnimodel
+AIC(expmodel,k=3)
+
+
+```
+
+
+
+
+
 ### Gamma + uniform
 
 ```{r,gamma}
 gammaUniNLL<-function(a,b,p,m){ # gamma negative log likelihood
-  -sum(log(p*dgamma(model.df$Fitness,shape=a,scale=b)+(1-p)*dunif(model.df$Fitness,0,m))) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+  gammall<-p*dgamma(model.df$Fitness,shape=a,scale=b)
+  unill<-(1-p)*dunif(model.df$Fitness,0,m)
+  likeli<-sum(gammall,unill,na.rm = T)
+  LL=-sum(log(likeli))
+  #LL<-sum(log(p*dgamma(model.df$Fitness,shape=a,scale=b)+(1-p)*dunif(model.df$Fitness,0,m))) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+  print(c(a,b,p,m))
+  print(LL)
+
+  if(is.finite(LL)) return(LL)
+  else return (1000)
 }
 
 m=mean(model.df$Fitness)
 vm=var(model.df$Fitness)/mean(model.df$Fitness)
 
-gammaUniModel<-mle2(gammaUniNLL,start=list(a = m/vm, b = vm,p=0.5,m=0.2))
+gammaUniModel<-mle2(gammaUniNLL,start=list(a = gammamodel@coef[1], b = gammamodel@coef[2],p=0.5,m=0.5),method="L-BFGS-B",lower=list(p=0,m=0),upper=list(p=1,m=1))
 gammaUniModel
 AIC(gammaUniModel,k=4)
 
 ```
 
+ The extra distributions aren't really adding anything.
+
+## Table
+
+```{r}
+data.tbl<-data.frame(Model = c("Exponential","Gamma","Beta","Weibull","Lognormal"),AIC=c(AIC(expmodel),AIC(gammamodel),AIC(betamodel),AIC(weibullmodel),AIC(lnormmodel)))
+knitr::kable(data.tbl)
+
+
+```
