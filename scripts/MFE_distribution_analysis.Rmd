@@ -135,6 +135,27 @@ setwd("~/Desktop/viral_fitness_dist_analysis/")
   mean(flu_surface.CDF)
   mean(flu_internal.CDF)
 
+<<<<<<< HEAD
+=======
+
+#compare mean fitness for flu only
+#total but does not make sense to do this test since these are all a subset of total:
+t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_random.CDF)
+t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_surface.CDF)
+t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+
+  #none are significantly different
+#random
+t.test(Big_fitness_df$fitness==flu_random.CDF, Big_fitness_df$fitness==flu_surface.CDF)
+t.test(Big_fitness_df$fitness==flu_random.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+#surface
+t.test(Big_fitness_df$fitness==flu_surface.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+  #none are significantly different
+
+#ALL SUBSETS ARE THE SAME! CRAZY!
+
+
+>>>>>>> b407a6cbf04e8648e58a1924f7cb85f5a0a6cf47
 ```{r}
 
 ```
