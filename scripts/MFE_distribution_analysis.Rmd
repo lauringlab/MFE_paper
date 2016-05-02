@@ -5,6 +5,7 @@ date: "April 28, 2016"
 output:
   html_document:
     fig_caption: yes
+    keep_md: yes
 ---
 
 ##This is an R Markdown document for the MFE distribution analysis.
