@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,tidy=T)
+knitr::opts_chunk$set(echo = TRUE,tidy=T,warning=F)
 require(plyr)
 require(bbmle)
 require(ggplot2)
@@ -108,7 +108,7 @@ exp_fit<-function(fitness){
 
 ## Table
 
-```{r}
+```{r,results='asis'}
 
 make_table<-function(data){
   fitness<-data[which(data<1)]
