@@ -2,11 +2,13 @@
 title: "MFE distributions Maximum likelihood"
 author: "JT McCrone"
 date: "April 22, 2016"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,tidy=T)
 require(plyr)
 require(bbmle)
 require(ggplot2)
@@ -34,92 +36,99 @@ model.df<-subset(model.df,Fitness>0 & Fitness<1)
 ggplot(model.df,aes(x=Fitness))+geom_histogram()
 ```
 
-### Gamma
-I'll start by modeling a gamma distribution. To get the ground work laid out.
+### functions
 
-When we estimate parameters using maximum likelihood we need a function that reports the likelihood of seeing the data given a certain distribution. Instead of maximizing likelihood we usually minimize the negative of the log likelihood but it all amounts to the same thing.
 
-```{r,gamma}
-gammaNLL<-function(shape,scale){ # gamma negative log likelihood
-  -sum(dgamma(model.df$Fitness,shape=shape,scale=scale,log=T)) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+```{r,NLL_functions}
+gammaNLL<-function(shape,scale,data){ # gamma negative log likelihood
+  -sum(dgamma(data,shape=shape,scale=scale,log=T)) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
 }
-```
 
-We'll use the method of momements to get an idea for a good starting point. The gamma distribution takes 2 parameters shape and scale. Shape = mean^2^/variance | Scale = variance/mean
-
-```{r}
-m=mean(model.df$Fitness)
-vm=var(model.df$Fitness)/mean(model.df$Fitness)
-
-gammamodel<-mle2(gammaNLL,start=list(shape = m/vm, scale = vm))
-gammamodel
-AIC(gammamodel,k=2)
-
-
-```
-
-### Beta
-
-Now we'll try the beta.
-
-```{r}
-betaNLL<-function(a,b){
-  -sum(dbeta(model.df$Fitness,shape1=a,shape2=b,log=T))
+gamma_fit<-function(fitness){
+  m=mean(fitness)
+  vm=var(fitness)/mean(fitness)
+  
+  gammamodel<-mle2(gammaNLL,start=list(shape = m/vm, scale = vm),data = list(data=fitness))
+  gammamodel
+  AIC(gammamodel,k=2)
 }
-```
 
-Getting to good starting points is a little trickier here. For now I'll start with 5. But we'll want to formalize this later.
 
-```{r}
-betamodel<-mle2(betaNLL,start=list(a = 5, b = 5))
-betamodel
-AIC(betamodel,k=2)
+betaNLL<-function(a,b,data){
+  #print(data)
+   -sum(dbeta(data,shape1=a,shape2=b,log=T))
+}
+
+beta_fit<-function(fitness){
+  data<-fitness
+ # print(data)
+  betamodel<-mle2(betaNLL,start=list(a = 5, b = 5),data = list(data=fitness))
+  betamodel
+  AIC(betamodel,k=2)
+}
 #plot(profile(betamodel))
-```
 
 
-### Weibull
-
-```{r}
-WeibullNLL<-function(a,b){
-    -sum(dweibull(model.df$Fitness,shape=a,scale=b,log=T))
+WeibullNLL<-function(a,b,data){
+    -sum(dweibull(data,shape=a,scale=b,log=T))
 
 }
 
-weibullmodel<-mle2(WeibullNLL,start=list(a = 5, b = 5))
-weibullmodel
-AIC(weibullmodel,k=2)
-```
+weibull_fit<-function(fitness){
+  weibullmodel<-mle2(WeibullNLL,start=list(a = 5, b = 5),data=list(data=fitness))
+  weibullmodel
+  AIC(weibullmodel,k=2)
+}
 
 
-###Lognormal
-
-```{r}
-lognormalNLL<-function(a,b){
-    -sum(dlnorm(model.df$Fitness,meanlog=a,sdlog = b,log=T))
+lognormalNLL<-function(a,b,data){
+    -sum(dlnorm(data,meanlog=a,sdlog = b,log=T))
 
 }
 
-lnormmodel<-mle2(lognormalNLL,start=list(a = mean(log(model.df$Fitness)), b = sd(log(model.df$Fitness))))
-lnormmodel
-AIC(lnormmodel,k=2)
-
-```
-
-
-###Exponential
-
-```{r}
-expNLL<-function(a){
-  -sum(dexp(model.df$Fitness,rate=a,log=T))
+lnorm_fit<-function(fitness){
+  lnormmodel<-mle2(lognormalNLL,start=list(a = mean(log(fitness)), b = sd(log(fitness))),data=list(data=fitness))
+  lnormmodel
+  AIC(lnormmodel,k=2)
 }
 
-expmodel<-mle2(expNLL,start=list(a = 1/mean(model.df$Fitness)))
-expmodel
-AIC(expmodel,k=1)
 
+expNLL<-function(a,data){
+  -sum(dexp(data,rate=a,log=T))
+}
+
+exp_fit<-function(fitness){
+  expmodel<-mle2(expNLL,start=list(a = 1/mean(fitness)),data=list(data=fitness))
+  expmodel
+  AIC(expmodel,k=1)
+}
 
 ```
+
+
+## Table
+
+```{r}
+
+make_table<-function(data){
+  fitness<-data[which(data<1)]
+  x<-data.frame(Distribution=c("Exponential","Gamma","Beta","Weibull","Lognormal"),AIC=c(exp_fit(fitness),gamma_fit(fitness),beta_fit(fitness),weibull_fit(fitness),lnorm_fit(fitness)))
+}
+
+total<-make_table(data.df$Total.CDF)
+
+random<-make_table(data.df$Random.CDF)
+surface<-make_table(data.df$Surface.CDF)
+internal<-make_table(data.df$Internal.CDF)
+
+
+all_table<-data.frame(Distribution=c("Exponential","Gamma","Beta","Weibull","Lognormal"),Total=total$AIC,Random=random$AIC,Surface=surface$AIC,Internal=internal$AIC)
+
+knitr::kable(all_table)
+```
+
+
+
 
 ## Adding uniform distributions
 
@@ -130,12 +139,21 @@ In this analyis we add a uniform distribution. We ARE NOT letting the parameters
 
 ```{r}
 expUniNLL<-function(a,p,m){
-  -sum(log(p*dexp(model.df$Fitness,rate=a)+(1-p)*dunif(model.df$Fitness,0,m)))
+    expll<-p*dexp(model.df$Fitness,rate=a)
+  unill<-(1-p)*dunif(model.df$Fitness,0,m)
+  likeli<-sum(expll,unill,na.rm = T)
+  LL=-sum(log(likeli))
+  
+  #print(c(a,p,m))
+  #print(LL)
+
+  if(is.finite(LL)) return(LL)
+  else return (1000)
 }
 
 expUnimodel<-mle2(expUniNLL,start=list(a = 1/mean(model.df$Fitness),p=0.5,m=0.5),method="L-BFGS-B",lower=c(0,0,0),upper=c(100,1,1))
 expUnimodel
-AIC(expmodel,k=3)
+AIC(expUnimodel,k=3)
 
 
 ```
@@ -146,15 +164,15 @@ AIC(expmodel,k=3)
 
 ### Gamma + uniform
 
-```{r,gamma}
+```{r,gammaUni}
 gammaUniNLL<-function(a,b,p,m){ # gamma negative log likelihood
   gammall<-p*dgamma(model.df$Fitness,shape=a,scale=b)
   unill<-(1-p)*dunif(model.df$Fitness,0,m)
   likeli<-sum(gammall,unill,na.rm = T)
   LL=-sum(log(likeli))
   #LL<-sum(log(p*dgamma(model.df$Fitness,shape=a,scale=b)+(1-p)*dunif(model.df$Fitness,0,m))) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
-  print(c(a,b,p,m))
-  print(LL)
+#  print(c(a,b,p,m))
+ # print(LL)
 
   if(is.finite(LL)) return(LL)
   else return (1000)
@@ -163,7 +181,7 @@ gammaUniNLL<-function(a,b,p,m){ # gamma negative log likelihood
 m=mean(model.df$Fitness)
 vm=var(model.df$Fitness)/mean(model.df$Fitness)
 
-gammaUniModel<-mle2(gammaUniNLL,start=list(a = gammamodel@coef[1], b = gammamodel@coef[2],p=0.5,m=0.5),method="L-BFGS-B",lower=list(p=0,m=0),upper=list(p=1,m=1))
+gammaUniModel<-mle2(gammaUniNLL,start=list(a = m/vm, b =vm ,p=0.5,m=0.5),method="L-BFGS-B",lower=list(p=0,m=0),upper=list(p=1,m=1))
 gammaUniModel
 AIC(gammaUniModel,k=4)
 
@@ -171,11 +189,8 @@ AIC(gammaUniModel,k=4)
 
  The extra distributions aren't really adding anything.
 
-## Table
-
-```{r}
-data.tbl<-data.frame(Model = c("Exponential","Gamma","Beta","Weibull","Lognormal"),AIC=c(AIC(expmodel),AIC(gammamodel),AIC(betamodel),AIC(weibullmodel),AIC(lnormmodel)))
-knitr::kable(data.tbl)
 
 
-```
+
+
+

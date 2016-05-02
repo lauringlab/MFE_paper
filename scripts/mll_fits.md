@@ -9,9 +9,9 @@ In this document we'll try to fit the distribution of the MFE using maximum like
 
 
 ```r
-data.df<-read.csv("../data/flu.csv",stringsAsFactors = F)
+data.df <- read.csv("../data/flu.csv", stringsAsFactors = F)
 
-ggplot(data.df,aes(x=Total.Hist))+geom_histogram()
+ggplot(data.df, aes(x = Total.Hist)) + geom_histogram()
 ```
 
 ```
@@ -29,9 +29,9 @@ To start we'll use the models from Sanjuan 2004 and to make things even easier w
 I'll subset the data above to include the non-lethal negative fitnesses
 
 ```r
-model.df<-mutate(data.df,Fitness=Total.CDF) # change this to other columns if you'd like to model those as well.
-model.df<-subset(model.df,Fitness>0 & Fitness<1)
-ggplot(model.df,aes(x=Fitness))+geom_histogram()
+model.df <- mutate(data.df, Fitness = Total.CDF)  # change this to other columns if you'd like to model those as well.
+model.df <- subset(model.df, Fitness > 0 & Fitness < 1)
+ggplot(model.df, aes(x = Fitness)) + geom_histogram()
 ```
 
 ```
@@ -40,285 +40,302 @@ ggplot(model.df,aes(x=Fitness))+geom_histogram()
 
 ![](mll_fits_files/figure-html/unnamed-chunk-1-1.png)
 
-### Gamma
-I'll start by modeling a gamma distribution. To get the ground work laid out.
+### functions
 
-When we estimate parameters using maximum likelihood we need a function that reports the likelihood of seeing the data given a certain distribution. Instead of maximizing likelihood we usually minimize the negative of the log likelihood but it all amounts to the same thing.
 
 
 ```r
-gammaNLL<-function(shape,scale){ # gamma negative log likelihood
-  -sum(dgamma(model.df$Fitness,shape=shape,scale=scale,log=T)) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+gammaNLL <- function(shape, scale, data) {
+    # gamma negative log likelihood
+    -sum(dgamma(data, shape = shape, scale = scale, log = T))  # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
+}
+
+gamma_fit <- function(fitness) {
+    m = mean(fitness)
+    vm = var(fitness)/mean(fitness)
+    
+    gammamodel <- mle2(gammaNLL, start = list(shape = m/vm, scale = vm), data = list(data = fitness))
+    gammamodel
+    AIC(gammamodel, k = 2)
+}
+
+
+betaNLL <- function(a, b, data) {
+    # print(data)
+    -sum(dbeta(data, shape1 = a, shape2 = b, log = T))
+}
+
+beta_fit <- function(fitness) {
+    data <- fitness
+    # print(data)
+    betamodel <- mle2(betaNLL, start = list(a = 5, b = 5), data = list(data = fitness))
+    betamodel
+    AIC(betamodel, k = 2)
+}
+# plot(profile(betamodel))
+
+
+WeibullNLL <- function(a, b, data) {
+    -sum(dweibull(data, shape = a, scale = b, log = T))
+    
+}
+
+weibull_fit <- function(fitness) {
+    weibullmodel <- mle2(WeibullNLL, start = list(a = 5, b = 5), data = list(data = fitness))
+    weibullmodel
+    AIC(weibullmodel, k = 2)
+}
+
+
+lognormalNLL <- function(a, b, data) {
+    -sum(dlnorm(data, meanlog = a, sdlog = b, log = T))
+    
+}
+
+lnorm_fit <- function(fitness) {
+    lnormmodel <- mle2(lognormalNLL, start = list(a = mean(log(fitness)), b = sd(log(fitness))), 
+        data = list(data = fitness))
+    lnormmodel
+    AIC(lnormmodel, k = 2)
+}
+
+
+expNLL <- function(a, data) {
+    -sum(dexp(data, rate = a, log = T))
+}
+
+exp_fit <- function(fitness) {
+    expmodel <- mle2(expNLL, start = list(a = 1/mean(fitness)), data = list(data = fitness))
+    expmodel
+    AIC(expmodel, k = 1)
 }
 ```
 
-We'll use the method of momements to get an idea for a good starting point. The gamma distribution takes 2 parameters shape and scale. Shape = mean^2^/variance | Scale = variance/mean
+
+## Table
 
 
 ```r
-m=mean(model.df$Fitness)
-vm=var(model.df$Fitness)/mean(model.df$Fitness)
-
-gammamodel<-mle2(gammaNLL,start=list(shape = m/vm, scale = vm))
-```
-
-```
-## Warning in dgamma(model.df$Fitness, shape = shape, scale = scale, log = T):
-## NaNs produced
-
-## Warning in dgamma(model.df$Fitness, shape = shape, scale = scale, log = T):
-## NaNs produced
-```
-
-```r
-gammamodel
-```
-
-```
-## 
-## Call:
-## mle2(minuslogl = gammaNLL, start = list(shape = m/vm, scale = vm))
-## 
-## Coefficients:
-##       shape       scale 
-## 10.50592157  0.07380712 
-## 
-## Log-likelihood: 3.29
-```
-
-```r
-AIC(gammamodel,k=2)
-```
-
-```
-## [1] -2.575103
-```
-
-### Beta
-
-Now we'll try the beta.
-
-
-```r
-betaNLL<-function(a,b){
-  -sum(dbeta(model.df$Fitness,shape1=a,shape2=b,log=T))
-}
-```
-
-Getting to good starting points is a little trickier here. For now I'll start with 5. But we'll want to formalize this later.
-
-
-```r
-betamodel<-mle2(betaNLL,start=list(a = 5, b = 5))
-```
-
-```
-## Warning in dbeta(model.df$Fitness, shape1 = a, shape2 = b, log = T): NaNs
-## produced
-
-## Warning in dbeta(model.df$Fitness, shape1 = a, shape2 = b, log = T): NaNs
-## produced
-
-## Warning in dbeta(model.df$Fitness, shape1 = a, shape2 = b, log = T): NaNs
-## produced
-```
-
-```r
-betamodel
-```
-
-```
-## 
-## Call:
-## mle2(minuslogl = betaNLL, start = list(a = 5, b = 5))
-## 
-## Coefficients:
-##         a         b 
-## 3.2558505 0.9832112 
-## 
-## Log-likelihood: 36.34
-```
-
-```r
-AIC(betamodel,k=2)
-```
-
-```
-## [1] -68.68449
-```
-
-```r
-#plot(profile(betamodel))
-```
-
-
-### Weibull
-
-
-```r
-WeibullNLL<-function(a,b){
-    -sum(dweibull(model.df$Fitness,shape=a,scale=b,log=T))
-
+make_table <- function(data) {
+    fitness <- data[which(data < 1)]
+    x <- data.frame(Distribution = c("Exponential", "Gamma", "Beta", "Weibull", 
+        "Lognormal"), AIC = c(exp_fit(fitness), gamma_fit(fitness), beta_fit(fitness), 
+        weibull_fit(fitness), lnorm_fit(fitness)))
 }
 
-weibullmodel<-mle2(WeibullNLL,start=list(a = 5, b = 5))
+total <- make_table(data.df$Total.CDF)
 ```
 
 ```
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
+## Warning in dgamma(data, shape = shape, scale = scale, log = T): NaNs
 ## produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
+## Warning in dgamma(data, shape = shape, scale = scale, log = T): NaNs
 ## produced
+```
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+```
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
+```
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+```
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dweibull(model.df$Fitness, shape = a, scale = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+```
+
+```
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
+
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
 ```
 
 ```r
-weibullmodel
+random <- make_table(data.df$Random.CDF)
 ```
 
 ```
-## 
-## Call:
-## mle2(minuslogl = WeibullNLL, start = list(a = 5, b = 5))
-## 
-## Coefficients:
-##        a        b 
-## 5.253301 0.844518 
-## 
-## Log-likelihood: 18.92
-```
-
-```r
-AIC(weibullmodel,k=2)
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 ```
 
 ```
-## [1] -33.84262
-```
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 
-
-###Lognormal
-
-
-```r
-lognormalNLL<-function(a,b){
-    -sum(dlnorm(model.df$Fitness,meanlog=a,sdlog = b,log=T))
-
-}
-
-lnormmodel<-mle2(lognormalNLL,start=list(a = mean(log(model.df$Fitness)), b = sd(log(model.df$Fitness))))
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 ```
 
 ```
-## Warning in dlnorm(model.df$Fitness, meanlog = a, sdlog = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 
-## Warning in dlnorm(model.df$Fitness, meanlog = a, sdlog = b, log = T): NaNs
-## produced
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
 ```
 
-```r
-lnormmodel
 ```
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
 
-```
-## 
-## Call:
-## mle2(minuslogl = lognormalNLL, start = list(a = mean(log(model.df$Fitness)), 
-##     b = sd(log(model.df$Fitness))))
-## 
-## Coefficients:
-##          a          b 
-## -0.3026852  0.3471052 
-## 
-## Log-likelihood: -4.24
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
 ```
 
 ```r
-AIC(lnormmodel,k=2)
+surface <- make_table(data.df$Surface.CDF)
 ```
 
 ```
-## [1] 12.48583
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 ```
 
+```
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
 
-###Exponential
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
+```
 
+```
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+```
+
+```
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
+
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
+```
 
 ```r
-expNLL<-function(a){
-  -sum(dexp(model.df$Fitness,rate=a,log=T))
-}
-
-expmodel<-mle2(expNLL,start=list(a = 1/mean(model.df$Fitness)))
-expmodel
+internal <- make_table(data.df$Internal.CDF)
 ```
 
 ```
-## 
-## Call:
-## mle2(minuslogl = expNLL, start = list(a = 1/mean(model.df$Fitness)))
-## 
-## Coefficients:
-##        a 
-## 1.289753 
-## 
-## Log-likelihood: -54.43
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
+```
+
+```
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
+
+## Warning in dbeta(data, shape1 = a, shape2 = b, log = T): NaNs produced
+```
+
+```
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+
+## Warning in dweibull(data, shape = a, scale = b, log = T): NaNs produced
+```
+
+```
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
+
+## Warning in dlnorm(data, meanlog = a, sdlog = b, log = T): NaNs produced
 ```
 
 ```r
-AIC(expmodel,k=1)
+all_table <- data.frame(Distribution = c("Exponential", "Gamma", "Beta", "Weibull", 
+    "Lognormal"), Total = total$AIC, Random = random$AIC, Surface = surface$AIC, 
+    Internal = internal$AIC)
+
+knitr::kable(all_table)
 ```
 
-```
-## [1] 109.8502
-```
+
+
+Distribution         Total       Random     Surface     Internal
+-------------  -----------  -----------  ----------  -----------
+Exponential     109.850233    84.840199    49.11733    61.563198
+Gamma            -2.575103     5.428507   -23.98510     9.812420
+Beta            -68.684491   -48.754863   -42.91293   -28.769167
+Weibull         -33.842623   -17.001904   -35.77080    -4.475457
+Lognormal        12.485825    17.124983   -21.11320    18.134522
+
+
+
 
 ## Adding uniform distributions
 
@@ -329,20 +346,20 @@ In this analyis we add a uniform distribution. We ARE NOT letting the parameters
 
 
 ```r
-expUniNLL<-function(a,p,m){
-    expll<-p*dexp(model.df$Fitness,rate=a)
-  unill<-(1-p)*dunif(model.df$Fitness,0,m)
-  likeli<-sum(expll,unill,na.rm = T)
-  LL=-sum(log(likeli))
-  
-  #print(c(a,p,m))
-  #print(LL)
-
-  if(is.finite(LL)) return(LL)
-  else return (1000)
+expUniNLL <- function(a, p, m) {
+    expll <- p * dexp(model.df$Fitness, rate = a)
+    unill <- (1 - p) * dunif(model.df$Fitness, 0, m)
+    likeli <- sum(expll, unill, na.rm = T)
+    LL = -sum(log(likeli))
+    
+    # print(c(a,p,m)) print(LL)
+    
+    if (is.finite(LL)) 
+        return(LL) else return(1000)
 }
 
-expUnimodel<-mle2(expUniNLL,start=list(a = 1/mean(model.df$Fitness),p=0.5,m=0.5),method="L-BFGS-B",lower=c(0,0,0),upper=c(100,1,1))
+expUnimodel <- mle2(expUniNLL, start = list(a = 1/mean(model.df$Fitness), p = 0.5, 
+    m = 0.5), method = "L-BFGS-B", lower = c(0, 0, 0), upper = c(100, 1, 1))
 ```
 
 ```
@@ -563,11 +580,11 @@ expUnimodel
 ```
 
 ```r
-AIC(expmodel,k=3)
+AIC(expUnimodel, k = 3)
 ```
 
 ```
-## [1] 111.8502
+## [1] 1.831134
 ```
 
 
@@ -578,23 +595,26 @@ AIC(expmodel,k=3)
 
 
 ```r
-gammaUniNLL<-function(a,b,p,m){ # gamma negative log likelihood
-  gammall<-p*dgamma(model.df$Fitness,shape=a,scale=b)
-  unill<-(1-p)*dunif(model.df$Fitness,0,m)
-  likeli<-sum(gammall,unill,na.rm = T)
-  LL=-sum(log(likeli))
-  #LL<-sum(log(p*dgamma(model.df$Fitness,shape=a,scale=b)+(1-p)*dunif(model.df$Fitness,0,m))) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
-#  print(c(a,b,p,m))
- # print(LL)
-
-  if(is.finite(LL)) return(LL)
-  else return (1000)
+gammaUniNLL <- function(a, b, p, m) {
+    # gamma negative log likelihood
+    gammall <- p * dgamma(model.df$Fitness, shape = a, scale = b)
+    unill <- (1 - p) * dunif(model.df$Fitness, 0, m)
+    likeli <- sum(gammall, unill, na.rm = T)
+    LL = -sum(log(likeli))
+    # LL<-sum(log(p*dgamma(model.df$Fitness,shape=a,scale=b)+(1-p)*dunif(model.df$Fitness,0,m)))
+    # # the negative of the sum of the prob of seeing the data give the shape
+    # and scale parameters. Log transform the probabilities print(c(a,b,p,m))
+    # print(LL)
+    
+    if (is.finite(LL)) 
+        return(LL) else return(1000)
 }
 
-m=mean(model.df$Fitness)
-vm=var(model.df$Fitness)/mean(model.df$Fitness)
+m = mean(model.df$Fitness)
+vm = var(model.df$Fitness)/mean(model.df$Fitness)
 
-gammaUniModel<-mle2(gammaUniNLL,start=list(a = gammamodel@coef[1], b = gammamodel@coef[2],p=0.5,m=0.5),method="L-BFGS-B",lower=list(p=0,m=0),upper=list(p=1,m=1))
+gammaUniModel <- mle2(gammaUniNLL, start = list(a = m/vm, b = vm, p = 0.5, m = 0.5), 
+    method = "L-BFGS-B", lower = list(p = 0, m = 0), upper = list(p = 1, m = 1))
 ```
 
 ```
@@ -613,18 +633,342 @@ gammaUniModel<-mle2(gammaUniNLL,start=list(a = gammamodel@coef[1], b = gammamode
 ## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
 
 ## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
 ```
 
 ```
-## Warning in mle2(gammaUniNLL, start = list(a = gammamodel@coef[1], b =
-## gammamodel@coef[2], : some parameters are on the boundary: variance-
-## covariance calculations based on Hessian may be unreliable
+## Warning in mle2(gammaUniNLL, start = list(a = m/vm, b = vm, p = 0.5,
+## m = 0.5), : some parameters are on the boundary: variance-covariance
+## calculations based on Hessian may be unreliable
 ```
 
 ```
-## Warning in mle2(gammaUniNLL, start = list(a = gammamodel@coef[1],
-## b = gammamodel@coef[2], : convergence failure: code=52 (ERROR:
-## ABNORMAL_TERMINATION_IN_LNSRCH)
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
+
+## Warning in dunif(model.df$Fitness, 0, m): NaNs produced
 ```
 
 ```r
@@ -634,43 +978,29 @@ gammaUniModel
 ```
 ## 
 ## Call:
-## mle2(minuslogl = gammaUniNLL, start = list(a = gammamodel@coef[1], 
-##     b = gammamodel@coef[2], p = 0.5, m = 0.5), method = "L-BFGS-B", 
-##     lower = list(p = 0, m = 0), upper = list(p = 1, m = 1))
+## mle2(minuslogl = gammaUniNLL, start = list(a = m/vm, b = vm, 
+##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = list(p = 0, 
+##     m = 0), upper = list(p = 1, m = 1))
 ## 
 ## Coefficients:
 ##         a         b         p         m 
-## 1.0000000 0.6050294 0.0000000 0.9902454 
+## 1.0000000 0.7102244 1.0000000 0.0000000 
 ## 
-## Log-likelihood: 4.3 
-## 
-## Warning: optimization did not converge (code 52: ERROR: ABNORMAL_TERMINATION_IN_LNSRCH)
+## Log-likelihood: 3.58
 ```
 
 ```r
-AIC(gammaUniModel,k=4)
+AIC(gammaUniModel, k = 4)
 ```
 
 ```
-## [1] 7.399476
+## [1] 8.831134
 ```
 
  The extra distributions aren't really adding anything.
 
-## Table
-
-
-```r
-data.tbl<-data.frame(Model = c("Exponential","Gamma","Beta","Weibull","Lognormal"),AIC=c(AIC(expmodel),AIC(gammamodel),AIC(betamodel),AIC(weibullmodel),AIC(lnormmodel)))
-knitr::kable(data.tbl)
-```
 
 
 
-Model                 AIC
-------------  -----------
-Exponential    110.850233
-Gamma           -2.575103
-Beta           -68.684491
-Weibull        -33.842623
-Lognormal       12.485825
+
+
