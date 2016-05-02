@@ -31,13 +31,10 @@ library(tidyr)
 ```{r}
 
 # READ IN FITNESS DATA FOR EACH VIRUS
-  #note!!
-  #Flu is in terms of fitness
-  # S = fitness -1 , or Fitness = S + 1 
   
   #polio
     #already represented as fitness
-  polio_fitness_df<-read.csv("~/Desktop/scripts/data/polio_fig_4_only.csv")
+  polio_fitness_df<-read.csv("~/Desktop/scripts/data/AshleyFig4.csv")
   polio_fitness_df$virus <-"polio"
   polio_fitness_df$fitness <-polio_fitness_df$Fitness
 
@@ -54,7 +51,7 @@ library(tidyr)
   QB_fitness_df$fitness<-1+(QB_fitness_df$relative_fitness)
 
   #phiX174 
-  phiX174_fitness_df<-read.csv("~/Desktop/scripts/data//phi_x_174_parsed.csv")
+  phiX174_fitness_df<-read.csv("~/Desktop/scripts/data/phi_x_174_parsed.csv")
   phiX174_fitness_df$virus<-"phix174"
   phiX174_fitness_df$fitness<-1+(phiX174_fitness_df$relative_fitness)
 
@@ -146,18 +143,17 @@ flu_fitness$virus<-names(c(flu_total.CDF,flu_random.CDF,flu_surface.CDF,flu_inte
 #t-tests for mean fitness for flu only
 
 #compare mean fitness for flu only
->>>>>>> 55c8786c5cd9df950fc1111e517487d9163aaa95
 #total but does not make sense to do this test since these are all a subset of total:
-t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_random.CDF)
-t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_surface.CDF)
-t.test(Big_fitness_df$fitness==flu_total.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+t.test(flu_fitness$fitness==flu_total.CDF, flu_fitness$fitness==flu_random.CDF)
+t.test(flu_fitness$fitness==flu_total.CDF, flu_fitness$fitness==flu_surface.CDF)
+t.test(flu_fitness$fitness==flu_total.CDF, flu_fitness$fitness==flu_internal.CDF)
 
   #none are significantly different
 #random
-t.test(Big_fitness_df$fitness==flu_random.CDF, Big_fitness_df$fitness==flu_surface.CDF)
-t.test(Big_fitness_df$fitness==flu_random.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+t.test(flu_fitness$fitness==flu_random.CDF, flu_fitness$fitness==flu_surface.CDF)
+t.test(flu_fitness$fitness==flu_random.CDF, flu_fitness$fitness==flu_internal.CDF)
 #surface
-t.test(Big_fitness_df$fitness==flu_surface.CDF, Big_fitness_df$fitness==flu_internal.CDF)
+t.test(flu_fitness$fitness==flu_surface.CDF, flu_fitness$fitness==flu_internal.CDF)
   #none are significantly different
 
 
@@ -183,9 +179,6 @@ length(Big_fitness_df$fitness)
   #yup! they are
 
 #MAKE HISTOGRAM that we don't need but it is pretty
-=======
-
-#MAKE HISTOGRAM that we don't need
 all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
   geom_freqpoly(binwidth = .1)+
   theme_classic())
