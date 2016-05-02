@@ -2,9 +2,7 @@
 title: "MFE distributions Maximum likelihood"
 author: "JT McCrone"
 date: "April 22, 2016"
-output: 
-  html_document: 
-    keep_md: yes
+output: github_document
 ---
 
 ```{r setup, include=FALSE}

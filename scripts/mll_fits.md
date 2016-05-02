@@ -1,46 +1,37 @@
-# MFE distributions Maximum likelihood
-JT McCrone  
-April 22, 2016  
+MFE distributions Maximum likelihood
+================
+JT McCrone
+April 22, 2016
 
+In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley *et. al* until the influenza data is ready.
 
-
-
-In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley _et. al_ until the influenza data is ready.
-
-
-```r
+``` r
 data.df <- read.csv("../data/flu.csv", stringsAsFactors = F)
 
 ggplot(data.df, aes(x = Total.Hist)) + geom_histogram()
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](mll_fits_files/figure-html/the_data-1.png)
+![](mll_fits_files/figure-markdown_github/the_data-1.png)
 
-To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. If I understand the paper correctly they just model the distribution of the negative effects (<1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
+To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. If I understand the paper correctly they just model the distribution of the negative effects (&lt;1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
 
 I'll subset the data above to include the non-lethal negative fitnesses
 
-```r
+``` r
 model.df <- mutate(data.df, Fitness = Total.CDF)  # change this to other columns if you'd like to model those as well.
 model.df <- subset(model.df, Fitness > 0 & Fitness < 1)
 ggplot(model.df, aes(x = Fitness)) + geom_histogram()
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](mll_fits_files/figure-html/unnamed-chunk-1-1.png)
+![](mll_fits_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 ### functions
 
-
-
-```r
+``` r
 gammaNLL <- function(shape, scale, data) {
     # gamma negative log likelihood
     -sum(dgamma(data, shape = shape, scale = scale, log = T))  # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
@@ -107,11 +98,10 @@ exp_fit <- function(fitness) {
 }
 ```
 
+Table
+-----
 
-## Table
-
-
-```r
+``` r
 make_table <- function(data) {
     fitness <- data[which(data < 1)]
     x <- data.frame(Distribution = c("Exponential", "Gamma", "Beta", "Weibull", 
@@ -133,28 +123,22 @@ all_table <- data.frame(Distribution = c("Exponential", "Gamma", "Beta", "Weibul
 knitr::kable(all_table)
 ```
 
+| Distribution |       Total|      Random|    Surface|    Internal|
+|:-------------|-----------:|-----------:|----------:|-----------:|
+| Exponential  |  109.850233|   84.840199|   49.11733|   61.563198|
+| Gamma        |   -2.575103|    5.428507|  -23.98510|    9.812420|
+| Beta         |  -68.684491|  -48.754863|  -42.91293|  -28.769167|
+| Weibull      |  -33.842623|  -17.001904|  -35.77080|   -4.475457|
+| Lognormal    |   12.485825|   17.124983|  -21.11320|   18.134522|
 
-
-Distribution         Total       Random     Surface     Internal
--------------  -----------  -----------  ----------  -----------
-Exponential     109.850233    84.840199    49.11733    61.563198
-Gamma            -2.575103     5.428507   -23.98510     9.812420
-Beta            -68.684491   -48.754863   -42.91293   -28.769167
-Weibull         -33.842623   -17.001904   -35.77080    -4.475457
-Lognormal        12.485825    17.124983   -21.11320    18.134522
-
-
-
-
-## Adding uniform distributions
+Adding uniform distributions
+----------------------------
 
 In this analyis we add a uniform distribution. We ARE NOT letting the parameters vary but rather are letting a proportion of the variants fall on a uniform distribution between 0 and some parameter b.
 
+### Exponential + uniform
 
-###Exponential + uniform
-
-
-```r
+``` r
 expUniNLL <- function(a, p, m) {
     expll <- p * dexp(model.df$Fitness, rate = a)
     unill <- (1 - p) * dunif(model.df$Fitness, 0, m)
@@ -172,36 +156,27 @@ expUnimodel <- mle2(expUniNLL, start = list(a = 1/mean(model.df$Fitness), p = 0.
 expUnimodel
 ```
 
-```
-## 
-## Call:
-## mle2(minuslogl = expUniNLL, start = list(a = 1/mean(model.df$Fitness), 
-##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = c(0, 0, 0), 
-##     upper = c(100, 1, 1))
-## 
-## Coefficients:
-##        a        p        m 
-## 1.408008 1.000000 0.000000 
-## 
-## Log-likelihood: 3.58
-```
+    ## 
+    ## Call:
+    ## mle2(minuslogl = expUniNLL, start = list(a = 1/mean(model.df$Fitness), 
+    ##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = c(0, 0, 0), 
+    ##     upper = c(100, 1, 1))
+    ## 
+    ## Coefficients:
+    ##        a        p        m 
+    ## 1.408008 1.000000 0.000000 
+    ## 
+    ## Log-likelihood: 3.58
 
-```r
+``` r
 AIC(expUnimodel, k = 3)
 ```
 
-```
-## [1] 1.831134
-```
-
-
-
-
+    ## [1] 1.831134
 
 ### Gamma + uniform
 
-
-```r
+``` r
 gammaUniNLL <- function(a, b, p, m) {
     # gamma negative log likelihood
     gammall <- p * dgamma(model.df$Fitness, shape = a, scale = b)
@@ -225,32 +200,22 @@ gammaUniModel <- mle2(gammaUniNLL, start = list(a = m/vm, b = vm, p = 0.5, m = 0
 gammaUniModel
 ```
 
-```
-## 
-## Call:
-## mle2(minuslogl = gammaUniNLL, start = list(a = m/vm, b = vm, 
-##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = list(p = 0, 
-##     m = 0), upper = list(p = 1, m = 1))
-## 
-## Coefficients:
-##         a         b         p         m 
-## 1.0000000 0.7102244 1.0000000 0.0000000 
-## 
-## Log-likelihood: 3.58
-```
+    ## 
+    ## Call:
+    ## mle2(minuslogl = gammaUniNLL, start = list(a = m/vm, b = vm, 
+    ##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = list(p = 0, 
+    ##     m = 0), upper = list(p = 1, m = 1))
+    ## 
+    ## Coefficients:
+    ##         a         b         p         m 
+    ## 1.0000000 0.7102244 1.0000000 0.0000000 
+    ## 
+    ## Log-likelihood: 3.58
 
-```r
+``` r
 AIC(gammaUniModel, k = 4)
 ```
 
-```
-## [1] 8.831134
-```
+    ## [1] 8.831134
 
- The extra distributions aren't really adding anything.
-
-
-
-
-
-
+The extra distributions aren't really adding anything.
