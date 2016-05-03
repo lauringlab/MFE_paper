@@ -330,6 +330,49 @@ library(tidyr)
 ```
 
 ```r
+#variance
+    #flu
+  var(flu_total.CDF)
+```
+
+```
+## [1] 0.04405313
+```
+
+```r
+  var(flu_random.CDF)
+```
+
+```
+## [1] 0.04791803
+```
+
+```r
+  var(flu_surface.CDF)
+```
+
+```
+## [1] 0.02547756
+```
+
+```r
+  var(flu_internal.CDF)
+```
+
+```
+## [1] 0.0556517
+```
+
+```r
+    #polio
+  var(polio.CDF)
+```
+
+```
+## [1] 0.06880976
+```
+
+```r
 #t-tests for mean fitness for flu only
 #surface vs internal is the only one that makes sense and is legit to to do since all others are subsets of each other, so they represent the same samples.
 t.test(flu_surface.CDF, flu_internal.CDF)
@@ -389,5 +432,5 @@ all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
 plot(all_hist)
 ```
 
-![](./distribution_analysis_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](distribution_analysis_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
