@@ -39,7 +39,7 @@ ggplot(model.df,aes(x=Fitness))+geom_histogram()
 
 ### functions
 
-
+For some reason these need to be nested into a function that renames the input data as fitness. I think it has to do with the way I'm passing data to mle2
 ```{r,NLL_functions}
 gammaNLL<-function(shape,scale,data){ # gamma negative log likelihood
   -sum(dgamma(data,shape=shape,scale=scale,log=T)) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
@@ -60,12 +60,18 @@ betaNLL<-function(a,b,data){
    -sum(dbeta(data,shape1=a,shape2=b,log=T))
 }
 
-beta_fit<-function(fitness){
-  data<-fitness
+beta_fit<-function(fitness,params=F){
+  #data<-fitness
  # print(data)
   betamodel<-mle2(betaNLL,start=list(a = 5, b = 5),data = list(data=fitness))
-  betamodel
-  AIC(betamodel,k=2)
+ 
+  x<-AIC(betamodel,k=2)
+  if(params==T){
+    x<-data.frame(shape1=round(betamodel@coef[1],3),shape2=round(betamodel@coef[2],3))
+    conf<-confint(betamodel)
+    x<-mutate(x,shape1=paste0(shape1," (",round(conf[1,1],3),"-",round(conf[1,2],3),")"),shape2=paste0(shape2," (",round(conf[2,1],3),"-",round(conf[2,2],3),")"))
+    } 
+  return(x)
 }
 #plot(profile(betamodel))
 
@@ -204,4 +210,27 @@ polio.tb<-make_table(polio$Fitness)
 knitr::kable(polio.tb)
 ```
 
+# Beta parameters
+I haven't done anything with significant digits yet
+
+```{r}
+make_params_table<-function(data){
+  fitness<-data[which(data<1)]
+  fit<-beta_fit(fitness,params=T)
+  t(fit)
+}
+
+total.p<-make_params_table(data.df$Total.CDF)
+
+random.p<-make_params_table(data.df$Random.CDF)
+surface.p<-make_params_table(data.df$Surface.CDF)
+internal.p<-make_params_table(data.df$Internal.CDF)
+polio.p<-make_params_table(polio$Fitness)
+
+all_table<-data.frame(Total=total.p,Random=random.p,Surface=surface.p,Internal=internal.p,Polio=polio.p)
+names(all_table)<-c("Total","Random","Surface","Internal","Polio")
+
+knitr::kable(all_table,padding=0)
+
+```
 

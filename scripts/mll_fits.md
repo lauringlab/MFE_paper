@@ -7,6 +7,7 @@ April 22, 2016
 -   [Flu MFE Table](#flu-mfe-table)
     -   [Adding uniform distributions](#adding-uniform-distributions)
 -   [Polio MFE data](#polio-mfe-data)
+-   [Beta parameters](#beta-parameters)
 
 In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley *et. al* until the influenza data is ready.
 
@@ -36,6 +37,8 @@ ggplot(model.df, aes(x = Fitness)) + geom_histogram()
 
 ### functions
 
+For some reason these need to be nested into a function that renames the input data as fitness. I think it has to do with the way I'm passing data to mle2
+
 ``` r
 gammaNLL <- function(shape, scale, data) {
     # gamma negative log likelihood
@@ -57,12 +60,20 @@ betaNLL <- function(a, b, data) {
     -sum(dbeta(data, shape1 = a, shape2 = b, log = T))
 }
 
-beta_fit <- function(fitness) {
-    data <- fitness
-    # print(data)
+beta_fit <- function(fitness, params = F) {
+    # data<-fitness print(data)
     betamodel <- mle2(betaNLL, start = list(a = 5, b = 5), data = list(data = fitness))
-    betamodel
-    AIC(betamodel, k = 2)
+    
+    x <- AIC(betamodel, k = 2)
+    if (params == T) {
+        x <- data.frame(shape1 = round(betamodel@coef[1], 3), shape2 = round(betamodel@coef[2], 
+            3))
+        conf <- confint(betamodel)
+        x <- mutate(x, shape1 = paste0(shape1, " (", round(conf[1, 1], 3), "-", 
+            round(conf[1, 2], 3), ")"), shape2 = paste0(shape2, " (", round(conf[2, 
+            1], 3), "-", round(conf[2, 2], 3), ")"))
+    }
+    return(x)
 }
 # plot(profile(betamodel))
 
@@ -246,3 +257,34 @@ knitr::kable(polio.tb)
 | Beta         |  -2519.1795|
 | Weibull      |   -499.8882|
 | Lognormal    |   3174.4454|
+
+Beta parameters
+===============
+
+I haven't done anything with significant digits yet
+
+``` r
+make_params_table <- function(data) {
+    fitness <- data[which(data < 1)]
+    fit <- beta_fit(fitness, params = T)
+    t(fit)
+}
+
+total.p <- make_params_table(data.df$Total.CDF)
+
+random.p <- make_params_table(data.df$Random.CDF)
+surface.p <- make_params_table(data.df$Surface.CDF)
+internal.p <- make_params_table(data.df$Internal.CDF)
+polio.p <- make_params_table(polio$Fitness)
+
+all_table <- data.frame(Total = total.p, Random = random.p, Surface = surface.p, 
+    Internal = internal.p, Polio = polio.p)
+names(all_table) <- c("Total", "Random", "Surface", "Internal", "Polio")
+
+knitr::kable(all_table, padding = 0)
+```
+
+|        | Total               | Random              | Surface              | Internal            | Polio               |
+|--------|:--------------------|:--------------------|:---------------------|:--------------------|:--------------------|
+| shape1 | 3.256 (2.275-4.484) | 2.831 (1.88-4.059)  | 6.306 (3.531-10.216) | 2.468 (1.542-3.711) | 2.166 (2.086-2.247) |
+| shape2 | 0.983 (0.73-1.295)  | 0.892 (0.637-1.214) | 1.398 (0.857-2.151)  | 0.878 (0.594-1.249) | 1.022 (0.989-1.056) |
