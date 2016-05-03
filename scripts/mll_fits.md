@@ -3,6 +3,11 @@ MFE distributions Maximum likelihood
 JT McCrone
 April 22, 2016
 
+-   [functions](#functions)
+-   [Flu MFE Table](#flu-mfe-table)
+    -   [Adding uniform distributions](#adding-uniform-distributions)
+-   [Polio MFE data](#polio-mfe-data)
+
 In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley *et. al* until the influenza data is ready.
 
 ``` r
@@ -98,8 +103,8 @@ exp_fit <- function(fitness) {
 }
 ```
 
-Table
------
+Flu MFE Table
+=============
 
 ``` r
 make_table <- function(data) {
@@ -219,3 +224,25 @@ AIC(gammaUniModel, k = 4)
     ## [1] 8.831134
 
 The extra distributions aren't really adding anything.
+
+Polio MFE data
+==============
+
+This is fitting the polio fitness data. I have selected for fitness values between 0 and 1.
+
+``` r
+polio <- read.csv("../data/AshleyFig4.csv")
+polio <- subset(polio, Fitness > 0 & Fitness < 1)
+
+polio.tb <- make_table(polio$Fitness)
+
+knitr::kable(polio.tb)
+```
+
+| Distribution |         AIC|
+|:-------------|-----------:|
+| Exponential  |   6970.5079|
+| Gamma        |   1338.4441|
+| Beta         |  -2519.1795|
+| Weibull      |   -499.8882|
+| Lognormal    |   3174.4454|

@@ -2,7 +2,10 @@
 title: "MFE distributions Maximum likelihood"
 author: "JT McCrone"
 date: "April 22, 2016"
-output: github_document
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
@@ -104,7 +107,7 @@ exp_fit<-function(fitness){
 ```
 
 
-## Table
+# Flu MFE Table
 
 ```{r,results='asis'}
 
@@ -189,6 +192,16 @@ AIC(gammaUniModel,k=4)
 
 
 
+# Polio MFE data
 
+This is fitting the polio fitness data. I have selected for fitness values between 0 and 1.
+```{r}
+polio<-read.csv("../data/AshleyFig4.csv")
+polio<-subset(polio,Fitness>0 & Fitness <1)
+
+polio.tb<-make_table(polio$Fitness)
+
+knitr::kable(polio.tb)
+```
 
 
