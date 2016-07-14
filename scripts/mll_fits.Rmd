@@ -63,7 +63,7 @@ betaNLL<-function(a,b,data){
 beta_fit<-function(fitness,params=F){
   #data<-fitness
  # print(data)
-  betamodel<-mle2(betaNLL,start=list(a = 5, b = 5),data = list(data=fitness))
+  betamodel<-mle2(betaNLL,start=list(a = 5, b = 5),data = list(data=fitness)) # start with 5 for a and b which visually matches the data. I have tried a number of starting points and this analysis is robust we get the same output each time. 
  
   x<-AIC(betamodel,k=2)
   if(params==T){
@@ -82,7 +82,7 @@ WeibullNLL<-function(a,b,data){
 }
 
 weibull_fit<-function(fitness){
-  weibullmodel<-mle2(WeibullNLL,start=list(a = 5, b = 5),data=list(data=fitness))
+  weibullmodel<-mle2(WeibullNLL,start=list(a = 5, b = 5),data=list(data=fitness))  # start with 5 for a and b which visually matches the data.
   weibullmodel
   AIC(weibullmodel,k=2)
 }
@@ -234,3 +234,25 @@ knitr::kable(all_table,padding=0)
 
 ```
 
+## Checking the fit
+
+
+```{r}
+check_fit<-function(data,title){
+  fitness<-data[which(data<1)]
+  fit<-beta_fit(fitness,params=T)
+  a=as.numeric(strsplit(fit$shape1," ")[[1]][1])
+  b=as.numeric(strsplit(fit$shape2," ")[[1]][1])
+  x=seq(0,1,0.1)
+  model=data.frame(Fitness=x,Density = dbeta(x,a,b))
+  exp=data.frame(Fitness=fitness)
+  ggplot(exp,aes(x=Fitness))+geom_dotplot()+geom_line(data=subset(model,is.finite(Density)),aes(x=Fitness,y=Density),color='red')+xlab("Density")+ggtitle(title)+annotate("text",x=0.1,y=2,label=paste0("a = ",as.character(a)," : ", "b = ",as.character(b)))
+}
+
+check_fit(data.df$Total.CDF,"Total")
+check_fit(data.df$Random.CDF,"Random")
+check_fit(data.df$Surface.CDF,"Surface")
+check_fit(data.df$Internal.CDF,"Internal")
+check_fit(polio$Fitness,"Polio")
+
+```
