@@ -1,46 +1,55 @@
-MFE distributions Maximum likelihood
-================
-JT McCrone
-April 22, 2016
+---
+title: "MFE distributions Maximum likelihood"
+author: "JT McCrone"
+date: "April 22, 2016"
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
+---
 
--   [functions](#functions)
--   [Flu MFE Table](#flu-mfe-table)
-    -   [Adding uniform distributions](#adding-uniform-distributions)
--   [Polio MFE data](#polio-mfe-data)
--   [Beta parameters](#beta-parameters)
-    -   [Checking the fit](#checking-the-fit)
 
-In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley *et. al* until the influenza data is ready.
 
-``` r
+
+In this document we'll  fit the distribution of the influenza fitness data using maximum likelihood methods and the r package bbmle. We'll also rely on R's built in distributions.
+
+
+Here we read in the data and get an idea of the distribution.
+
+```r
 data.df <- read.csv("../data/flu.csv", stringsAsFactors = F)
 
 ggplot(data.df, aes(x = Total.Hist)) + geom_histogram()
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
-![](mll_fits_files/figure-markdown_github/the_data-1.png)
+![plot of chunk the_data](figure/the_data-1.png)
 
-To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. If I understand the paper correctly they just model the distribution of the negative effects (&lt;1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
+To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. We will be modeling the distribution of the negative effects (<1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
 
 I'll subset the data above to include the non-lethal negative fitnesses
 
-``` r
+```r
 model.df <- mutate(data.df, Fitness = Total.CDF)  # change this to other columns if you'd like to model those as well.
 model.df <- subset(model.df, Fitness > 0 & Fitness < 1)
 ggplot(model.df, aes(x = Fitness)) + geom_histogram()
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
-![](mll_fits_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
 
-### functions
+### MLL Functions
 
-For some reason these need to be nested into a function that renames the input data as fitness. I think it has to do with the way I'm passing data to mle2
+These functions below allow us to fit each type of model to the data and return the appropriate AIC.
+For some reason these need to be nested into a function that renames the input data as fitness. I think it has to do with the way I'm passing data to mle2.
 
-``` r
+```r
 gammaNLL <- function(shape, scale, data) {
     # gamma negative log likelihood
     -sum(dgamma(data, shape = shape, scale = scale, log = T))  # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
@@ -115,10 +124,13 @@ exp_fit <- function(fitness) {
 }
 ```
 
-Flu MFE Table
-=============
 
-``` r
+# Flu MFE Table
+
+Here we use the functions above to make a table of the AIC for various subsets of the data.
+
+
+```r
 make_table <- function(data) {
     fitness <- data[which(data < 1)]
     x <- data.frame(Distribution = c("Exponential", "Gamma", "Beta", "Weibull", 
@@ -140,22 +152,28 @@ all_table <- data.frame(Distribution = c("Exponential", "Gamma", "Beta", "Weibul
 knitr::kable(all_table)
 ```
 
-| Distribution |       Total|      Random|    Surface|    Internal|
-|:-------------|-----------:|-----------:|----------:|-----------:|
-| Exponential  |  109.824436|   84.814139|   49.11733|   61.536311|
-| Gamma        |   -2.633794|    5.372353|  -23.98510|    9.755840|
-| Beta         |  -68.630982|  -48.693444|  -42.91293|  -28.713227|
-| Weibull      |  -33.906937|  -17.061899|  -35.77080|   -4.538429|
-| Lognormal    |   12.427892|   17.069145|  -21.11320|   18.078600|
 
-Adding uniform distributions
-----------------------------
 
-In this analyis we add a uniform distribution. We ARE NOT letting the parameters vary but rather are letting a proportion of the variants fall on a uniform distribution between 0 and some parameter b.
+|Distribution |      Total|     Random|   Surface|   Internal|
+|:------------|----------:|----------:|---------:|----------:|
+|Exponential  | 109.824436|  84.814139|  49.11733|  61.536311|
+|Gamma        |  -2.633794|   5.372353| -23.98510|   9.755840|
+|Beta         | -68.630982| -48.693444| -42.91293| -28.713227|
+|Weibull      | -33.906937| -17.061899| -35.77080|  -4.538429|
+|Lognormal    |  12.427892|  17.069145| -21.11320|  18.078600|
 
-### Exponential + uniform
 
-``` r
+
+
+## Adding uniform distributions
+
+It has been noted that more complicated models may better discribe MFE data. In this analyis we add a uniform distribution as has been done in the past. We ARE NOT letting the parameters vary but rather are letting a proportion (p) of the variants fall on a uniform distribution between 0 and some parameter m.
+
+
+###Exponential + uniform
+
+
+```r
 expUniNLL <- function(a, p, m) {
     expll <- p * dexp(model.df$Fitness, rate = a)
     unill <- (1 - p) * dunif(model.df$Fitness, 0, m)
@@ -173,27 +191,36 @@ expUnimodel <- mle2(expUniNLL, start = list(a = 1/mean(model.df$Fitness), p = 0.
 expUnimodel
 ```
 
-    ## 
-    ## Call:
-    ## mle2(minuslogl = expUniNLL, start = list(a = 1/mean(model.df$Fitness), 
-    ##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = c(0, 0, 0), 
-    ##     upper = c(100, 1, 1))
-    ## 
-    ## Coefficients:
-    ##       a       p       m 
-    ## 1.40819 1.00000 0.00000 
-    ## 
-    ## Log-likelihood: 3.58
+```
+## 
+## Call:
+## mle2(minuslogl = expUniNLL, start = list(a = 1/mean(model.df$Fitness), 
+##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = c(0, 0, 0), 
+##     upper = c(100, 1, 1))
+## 
+## Coefficients:
+##       a       p       m 
+## 1.40819 1.00000 0.00000 
+## 
+## Log-likelihood: 3.58
+```
 
-``` r
+```r
 AIC(expUnimodel, k = 3)
 ```
 
-    ## [1] 1.830822
+```
+## [1] 1.830822
+```
+
+
+
+
 
 ### Gamma + uniform
 
-``` r
+
+```r
 gammaUniNLL <- function(a, b, p, m) {
     # gamma negative log likelihood
     gammall <- p * dgamma(model.df$Fitness, shape = a, scale = b)
@@ -217,32 +244,36 @@ gammaUniModel <- mle2(gammaUniNLL, start = list(a = m/vm, b = vm, p = 0.5, m = 0
 gammaUniModel
 ```
 
-    ## 
-    ## Call:
-    ## mle2(minuslogl = gammaUniNLL, start = list(a = m/vm, b = vm, 
-    ##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = list(p = 0, 
-    ##     m = 0), upper = list(p = 1, m = 1))
-    ## 
-    ## Coefficients:
-    ##         a         b         p         m 
-    ## 1.0000000 0.7101327 1.0000000 0.0000000 
-    ## 
-    ## Log-likelihood: 3.58
+```
+## 
+## Call:
+## mle2(minuslogl = gammaUniNLL, start = list(a = m/vm, b = vm, 
+##     p = 0.5, m = 0.5), method = "L-BFGS-B", lower = list(p = 0, 
+##     m = 0), upper = list(p = 1, m = 1))
+## 
+## Coefficients:
+##         a         b         p         m 
+## 1.0000000 0.7101327 1.0000000 0.0000000 
+## 
+## Log-likelihood: 3.58
+```
 
-``` r
+```r
 AIC(gammaUniModel, k = 4)
 ```
 
-    ## [1] 8.830822
+```
+## [1] 8.830822
+```
 
-The extra distributions aren't really adding anything.
+The extra distributions don't provide better fits than the simplier models.
 
-Polio MFE data
-==============
 
-This is fitting the polio fitness data. I have selected for fitness values between 0 and 1.
+# Polio MFE data
 
-``` r
+This is fitting the polio fitness data. I have selected for fitness values between 0 and 1. As this data was kindly provided by the Andino lab we have not included it in this release.
+
+```r
 polio <- read.csv("../data/AshleyFig4.csv")
 polio <- subset(polio, Fitness > 0 & Fitness < 1)
 
@@ -251,20 +282,12 @@ polio.tb <- make_table(polio$Fitness)
 knitr::kable(polio.tb)
 ```
 
-| Distribution |         AIC|
-|:-------------|-----------:|
-| Exponential  |   6970.5079|
-| Gamma        |   1338.4441|
-| Beta         |  -2519.1795|
-| Weibull      |   -499.8882|
-| Lognormal    |   3174.4454|
+# Beta parameters
 
-Beta parameters
-===============
+We saw that the beta distribution fit the data best. These functions extract the parameters of those fits. 
 
-I haven't done anything with significant digits yet
 
-``` r
+```r
 make_params_table <- function(data) {
     fitness <- data[which(data < 1)]
     fit <- beta_fit(fitness, params = T)
@@ -276,24 +299,27 @@ total.p <- make_params_table(data.df$Total.CDF)
 random.p <- make_params_table(data.df$Random.CDF)
 surface.p <- make_params_table(data.df$Surface.CDF)
 internal.p <- make_params_table(data.df$Internal.CDF)
-polio.p <- make_params_table(polio$Fitness)
+# polio.p<-make_params_table(polio$Fitness)
 
 all_table <- data.frame(Total = total.p, Random = random.p, Surface = surface.p, 
-    Internal = internal.p, Polio = polio.p)
-names(all_table) <- c("Total", "Random", "Surface", "Internal", "Polio")
+    Internal = internal.p)  #,Polio=polio.p)
+names(all_table) <- c("Total", "Random", "Surface", "Internal")  #,'Polio')
 
 knitr::kable(all_table, padding = 0)
 ```
 
-|        | Total               | Random              | Surface              | Internal           | Polio               |
-|--------|:--------------------|:--------------------|:---------------------|:-------------------|:--------------------|
-| shape1 | 3.258 (2.277-4.487) | 2.833 (1.882-4.062) | 6.306 (3.531-10.216) | 2.47 (1.544-3.715) | 2.166 (2.086-2.247) |
-| shape2 | 0.985 (0.731-1.297) | 0.893 (0.638-1.216) | 1.398 (0.857-2.151)  | 0.88 (0.595-1.252) | 1.022 (0.989-1.056) |
 
-Checking the fit
-----------------
 
-``` r
+|      |Total              |Random             |Surface             |Internal          |
+|:-----|:------------------|:------------------|:-------------------|:-----------------|
+|shape1|3.258 (2.277-4.487)|2.833 (1.882-4.062)|6.306 (3.531-10.216)|2.47 (1.544-3.715)|
+|shape2|0.985 (0.731-1.297)|0.893 (0.638-1.216)|1.398 (0.857-2.151) |0.88 (0.595-1.252)|
+
+## Checking the fit
+
+These are just rough plots to get an idea of what the data and models look like together. When comparing this data sets the shapes of the distributions are what is important. Given the types of plots we don't expect the y axis to match.
+
+```r
 check_fit <- function(data, title) {
     fitness <- data[which(data < 1)]
     fit <- beta_fit(fitness, params = T)
@@ -311,38 +337,42 @@ check_fit <- function(data, title) {
 check_fit(data.df$Total.CDF, "Total")
 ```
 
-    ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+```
+## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
-![](mll_fits_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
-``` r
+```r
 check_fit(data.df$Random.CDF, "Random")
 ```
 
-    ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+```
+## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
-![](mll_fits_files/figure-markdown_github/unnamed-chunk-6-2.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
 
-``` r
+```r
 check_fit(data.df$Surface.CDF, "Surface")
 ```
 
-    ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+```
+## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
-![](mll_fits_files/figure-markdown_github/unnamed-chunk-6-3.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
 
-``` r
+```r
 check_fit(data.df$Internal.CDF, "Internal")
 ```
 
-    ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
-
-![](mll_fits_files/figure-markdown_github/unnamed-chunk-6-4.png)
-
-``` r
-check_fit(polio$Fitness, "Polio")
+```
+## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-    ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-4.png)
 
-![](mll_fits_files/figure-markdown_github/unnamed-chunk-6-5.png)
+```r
+# check_fit(polio$Fitness,'Polio')
+```

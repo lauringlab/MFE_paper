@@ -19,8 +19,10 @@ axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'))) # to 
 ```
 
 
-In this document we'll try to fit the distribution of the MFE using maximum likelihood methods and the r package bbmle. We'll also rely on Rs built in distributions and for the time being we'll be using the data in Ashley _et. al_ until the influenza data is ready.
+In this document we'll  fit the distribution of the influenza fitness data using maximum likelihood methods and the r package bbmle. We'll also rely on R's built in distributions.
 
+
+Here we read in the data and get an idea of the distribution.
 ```{r,the_data}
 
 data.df<-read.csv("../data/flu.csv",stringsAsFactors = F)
@@ -28,7 +30,7 @@ data.df<-read.csv("../data/flu.csv",stringsAsFactors = F)
 ggplot(data.df,aes(x=Total.Hist))+geom_histogram()
 ```
 
-To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. If I understand the paper correctly they just model the distribution of the negative effects (<1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
+To start we'll use the models from Sanjuan 2004 and to make things even easier we'll just look at the simple noncompounded models first and save the compounded ones for later. We will be modeling the distribution of the negative effects (<1.0 , not necessarily significant) that are not lethal. We could model the lethal effects with a zero-inflated model, but we'll save that for later.
 
 I'll subset the data above to include the non-lethal negative fitnesses
 ```{r}
@@ -37,9 +39,10 @@ model.df<-subset(model.df,Fitness>0 & Fitness<1)
 ggplot(model.df,aes(x=Fitness))+geom_histogram()
 ```
 
-### functions
+### MLL Functions
 
-For some reason these need to be nested into a function that renames the input data as fitness. I think it has to do with the way I'm passing data to mle2
+These functions below allow us to fit each type of model to the data and return the appropriate AIC.
+For some reason these need to be nested into a function that renames the input data as fitness. I think it has to do with the way I'm passing data to mle2.
 ```{r,NLL_functions}
 gammaNLL<-function(shape,scale,data){ # gamma negative log likelihood
   -sum(dgamma(data,shape=shape,scale=scale,log=T)) # the negative of the sum of the prob of seeing the data give the shape and scale parameters. Log transform the probabilities
@@ -115,6 +118,8 @@ exp_fit<-function(fitness){
 
 # Flu MFE Table
 
+Here we use the functions above to make a table of the AIC for various subsets of the data.
+
 ```{r,results='asis'}
 
 make_table<-function(data){
@@ -139,7 +144,7 @@ knitr::kable(all_table)
 
 ## Adding uniform distributions
 
-In this analyis we add a uniform distribution. We ARE NOT letting the parameters vary but rather are letting a proportion of the variants fall on a uniform distribution between 0 and some parameter b.
+It has been noted that more complicated models may better discribe MFE data. In this analyis we add a uniform distribution as has been done in the past. We ARE NOT letting the parameters vary but rather are letting a proportion (p) of the variants fall on a uniform distribution between 0 and some parameter m.
 
 
 ###Exponential + uniform
@@ -194,14 +199,13 @@ AIC(gammaUniModel,k=4)
 
 ```
 
- The extra distributions aren't really adding anything.
-
+The extra distributions don't provide better fits than the simplier models.
 
 
 # Polio MFE data
 
-This is fitting the polio fitness data. I have selected for fitness values between 0 and 1.
-```{r}
+This is fitting the polio fitness data. I have selected for fitness values between 0 and 1. As this data was kindly provided by the Andino lab we have not included it in this release.
+```{r,eval=F}
 polio<-read.csv("../data/AshleyFig4.csv")
 polio<-subset(polio,Fitness>0 & Fitness <1)
 
@@ -211,7 +215,8 @@ knitr::kable(polio.tb)
 ```
 
 # Beta parameters
-I haven't done anything with significant digits yet
+
+We saw that the beta distribution fit the data best. These functions extract the parameters of those fits. 
 
 ```{r}
 make_params_table<-function(data){
@@ -225,10 +230,10 @@ total.p<-make_params_table(data.df$Total.CDF)
 random.p<-make_params_table(data.df$Random.CDF)
 surface.p<-make_params_table(data.df$Surface.CDF)
 internal.p<-make_params_table(data.df$Internal.CDF)
-polio.p<-make_params_table(polio$Fitness)
+#polio.p<-make_params_table(polio$Fitness)
 
-all_table<-data.frame(Total=total.p,Random=random.p,Surface=surface.p,Internal=internal.p,Polio=polio.p)
-names(all_table)<-c("Total","Random","Surface","Internal","Polio")
+all_table<-data.frame(Total=total.p,Random=random.p,Surface=surface.p,Internal=internal.p)#,Polio=polio.p)
+names(all_table)<-c("Total","Random","Surface","Internal")#,"Polio")
 
 knitr::kable(all_table,padding=0)
 
@@ -236,7 +241,7 @@ knitr::kable(all_table,padding=0)
 
 ## Checking the fit
 
-
+These are just rough plots to get an idea of what the data and models look like together. When comparing this data sets the shapes of the distributions are what is important. Given the types of plots we don't expect the y axis to match.
 ```{r}
 check_fit<-function(data,title){
   fitness<-data[which(data<1)]
@@ -253,6 +258,6 @@ check_fit(data.df$Total.CDF,"Total")
 check_fit(data.df$Random.CDF,"Random")
 check_fit(data.df$Surface.CDF,"Surface")
 check_fit(data.df$Internal.CDF,"Internal")
-check_fit(polio$Fitness,"Polio")
+#check_fit(polio$Fitness,"Polio")
 
 ```

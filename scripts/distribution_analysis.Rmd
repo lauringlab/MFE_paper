@@ -3,8 +3,9 @@ title: "Untitled"
 author: "Shawn Whitefield"
 date: "May 2, 2016"
 output:
-  html_document:
-    keep_md: true
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 
@@ -33,24 +34,24 @@ library(tidyr)
   
   #polio
     #already represented as fitness
-  polio_fitness_df<-read.csv("~/Desktop/scripts/data/AshleyFig4.csv")
-  polio_fitness_df$virus <-"polio"
-  polio_fitness_df$fitness <-polio_fitness_df$Fitness
+  # polio_fitness_df<-read.csv("~/Desktop/scripts/data/AshleyFig4.csv")
+  # polio_fitness_df$virus <-"polio"
+  # polio_fitness_df$fitness <-polio_fitness_df$Fitness
 
   #these viruses are in therms of S so need to add 1
   #TEV
-  TEV_fitness_df<-read.csv("~/Desktop/scripts/data/TEV_parsing.csv")
+  TEV_fitness_df<-read.csv("../data/TEV_parsing.csv")
   TEV_fitness_df$s<-sub("\\(.*$","",TEV_fitness_df$Relative_fitness) #add column for fitness
   TEV_fitness_df$fitness<-(as.numeric(TEV_fitness_df$s))+1
   TEV_fitness_df$virus<-"TEV"
   
   #QB 
-  QB_fitness_df<-read.csv("~/Desktop/scripts/data/QB_parsed.csv")
+  QB_fitness_df<-read.csv("../data/QB_parsed.csv")
   QB_fitness_df$virus <- "QB"
   QB_fitness_df$fitness<-1+(QB_fitness_df$relative_fitness)
 
   #phiX174 
-  phiX174_fitness_df<-read.csv("~/Desktop/scripts/data/phi_x_174_parsed.csv")
+  phiX174_fitness_df<-read.csv("../data/phi_x_174_parsed.csv")
   phiX174_fitness_df$virus<-"phix174"
   phiX174_fitness_df$fitness<-1+(phiX174_fitness_df$relative_fitness)
 
@@ -60,7 +61,7 @@ library(tidyr)
       #1. All
       #2. HA + NA
       #3  External segments
-  flu_fitness_df<- read.csv("~/Desktop/scripts/data/flu.csv")
+  flu_fitness_df<- read.csv("../data/flu.csv")
 
 
 ```
@@ -79,9 +80,9 @@ library(tidyr)
     names(TEV)<-c(rep("TEV",length(TEV)))
       TEV.CDF<-TEV[TEV!=0]
 
-    polio<-polio_fitness_df$fitness
-    names(polio)<-c(rep("polio",length(polio)))
-      polio.CDF<-polio[polio!=0]
+    # polio<-polio_fitness_df$fitness
+    # names(polio)<-c(rep("polio",length(polio)))
+    #   polio.CDF<-polio[polio!=0]
 
     # Without lethal fractions
     flu_total.CDF<-flu_fitness_df$Total.CDF #all
@@ -105,7 +106,7 @@ library(tidyr)
   skewness(phiX.CDF)
   skewness(QB.CDF)
   skewness(TEV.CDF)
-  skewness(polio.CDF)
+  #skewness(polio.CDF)
   skewness(flu_total.CDF)
   skewness(flu_random.CDF)
   skewness(flu_surface.CDF)
@@ -115,7 +116,7 @@ library(tidyr)
   kurtosis(phiX.CDF)
   kurtosis(QB.CDF)
   kurtosis(TEV.CDF)
-  kurtosis(polio.CDF)
+  #kurtosis(polio.CDF)
   kurtosis(flu_total.CDF)
   kurtosis(flu_random.CDF)
   kurtosis(flu_surface.CDF)
@@ -125,7 +126,7 @@ library(tidyr)
   mean(phiX.CDF)
   mean(QB.CDF)
   mean(TEV.CDF)
-  mean(polio.CDF)
+  #mean(polio.CDF)
   mean(flu_total.CDF)
   mean(flu_random.CDF)
   mean(flu_surface.CDF)
@@ -149,17 +150,16 @@ t.test(flu_surface.CDF, flu_internal.CDF)
 
 #INTERNAL AND SURFACE DO NOT HAVE THE SAME MEAN FITNESS.
 
-```{r}
-
 ```
+
 ##### Histograms
 
 ```{r}
 #make df with all of the CDF fitness
 
-Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
+Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))#, polio.CDF))
 colnames(Big_fitness_df)<-"fitness"
-Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
+Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))#, polio.CDF))
 
 #double check that these are only the non-lethals
 sum(Big_fitness_df$fitness > -1)
