@@ -341,7 +341,7 @@ check_fit(data.df$Total.CDF, "Total")
 ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk fit_dens](figure/fit_dens-1.png)
 
 ```r
 check_fit(data.df$Random.CDF, "Random")
@@ -351,7 +351,7 @@ check_fit(data.df$Random.CDF, "Random")
 ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
+![plot of chunk fit_dens](figure/fit_dens-2.png)
 
 ```r
 check_fit(data.df$Surface.CDF, "Surface")
@@ -361,7 +361,7 @@ check_fit(data.df$Surface.CDF, "Surface")
 ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
+![plot of chunk fit_dens](figure/fit_dens-3.png)
 
 ```r
 check_fit(data.df$Internal.CDF, "Internal")
@@ -371,7 +371,7 @@ check_fit(data.df$Internal.CDF, "Internal")
 ## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-4.png)
+![plot of chunk fit_dens](figure/fit_dens-4.png)
 
 ```r
 # check_fit(polio$Fitness,'Polio')

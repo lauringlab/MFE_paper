@@ -120,7 +120,7 @@ exp_fit<-function(fitness){
 
 Here we use the functions above to make a table of the AIC for various subsets of the data.
 
-```{r,results='asis'}
+```{r,mfe_table,results='asis'}
 
 make_table<-function(data){
   fitness<-data[which(data<1)]
@@ -218,7 +218,7 @@ knitr::kable(polio.tb)
 
 We saw that the beta distribution fit the data best. These functions extract the parameters of those fits. 
 
-```{r}
+```{r,beta_params}
 make_params_table<-function(data){
   fitness<-data[which(data<1)]
   fit<-beta_fit(fitness,params=T)
@@ -242,7 +242,7 @@ knitr::kable(all_table,padding=0)
 ## Checking the fit
 
 These are just rough plots to get an idea of what the data and models look like together. When comparing this data sets the shapes of the distributions are what is important. Given the types of plots we don't expect the y axis to match.
-```{r}
+```{r,fit_dens}
 check_fit<-function(data,title){
   fitness<-data[which(data<1)]
   fit<-beta_fit(fitness,params=T)

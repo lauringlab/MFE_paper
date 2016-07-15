@@ -1,9 +1,12 @@
-# Untitled
-Shawn Whitefield  
-May 2, 2016  
+---
+title: "MFE distribution analysis"
+author: "Shawn Whitefield"
+date: "May 2, 2016"
+output:
+  github_document
+---
 
-
-##This is an R Markdown document for the MFE distribution analysis.
+This is an R Markdown document for the MFE distribution analysis.
 
 ##### load in packages for analysis
 
@@ -28,15 +31,11 @@ library(qpcR)
 ```
 
 ```
-## Warning in rgl.init(initValue, onlyNULL): RGL: unable to open X11 display
-```
-
-```
-## Warning: 'rgl_init' failed, running with rgl.useNULL = TRUE
-```
-
-```
 ## Loading required package: robustbase
+```
+
+```
+## Warning: package 'robustbase' was built under R version 3.2.5
 ```
 
 ```
@@ -46,6 +45,13 @@ library(qpcR)
 ```r
 library(plyr)
 library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.2.4
+```
+
+```r
 library(tidyr)
 ```
 
@@ -68,24 +74,24 @@ library(tidyr)
   
   #polio
     #already represented as fitness
-  polio_fitness_df<-read.csv("~/Desktop/scripts/data/AshleyFig4.csv")
-  polio_fitness_df$virus <-"polio"
-  polio_fitness_df$fitness <-polio_fitness_df$Fitness
+  # polio_fitness_df<-read.csv("~/Desktop/scripts/data/AshleyFig4.csv")
+  # polio_fitness_df$virus <-"polio"
+  # polio_fitness_df$fitness <-polio_fitness_df$Fitness
 
   #these viruses are in therms of S so need to add 1
   #TEV
-  TEV_fitness_df<-read.csv("~/Desktop/scripts/data/TEV_parsing.csv")
-  TEV_fitness_df$s<-sub("\\(.*$","",TEV_fitness_df$Relative_fitness) #add column for fitness
+  TEV_fitness_df<-read.csv("../data/TEV_parsed.csv")
+  TEV_fitness_df$s<-sub("\\(.*$","",TEV_fitness_df$Relative.fitness) #add column for fitness
   TEV_fitness_df$fitness<-(as.numeric(TEV_fitness_df$s))+1
   TEV_fitness_df$virus<-"TEV"
   
   #QB 
-  QB_fitness_df<-read.csv("~/Desktop/scripts/data/QB_parsed.csv")
+  QB_fitness_df<-read.csv("../data/QB_parsed.csv")
   QB_fitness_df$virus <- "QB"
   QB_fitness_df$fitness<-1+(QB_fitness_df$relative_fitness)
 
   #phiX174 
-  phiX174_fitness_df<-read.csv("~/Desktop/scripts/data/phi_x_174_parsed.csv")
+  phiX174_fitness_df<-read.csv("../data/phi_x_174_parsed.csv")
   phiX174_fitness_df$virus<-"phix174"
   phiX174_fitness_df$fitness<-1+(phiX174_fitness_df$relative_fitness)
 
@@ -95,7 +101,7 @@ library(tidyr)
       #1. All
       #2. HA + NA
       #3  External segments
-  flu_fitness_df<- read.csv("~/Desktop/scripts/data/flu.csv")
+  flu_fitness_df<- read.csv("../data/flu.csv")
 ```
 #####Examine Skew and Kurtosis in non-lethal fraction
 
@@ -113,9 +119,9 @@ library(tidyr)
     names(TEV)<-c(rep("TEV",length(TEV)))
       TEV.CDF<-TEV[TEV!=0]
 
-    polio<-polio_fitness_df$fitness
-    names(polio)<-c(rep("polio",length(polio)))
-      polio.CDF<-polio[polio!=0]
+    # polio<-polio_fitness_df$fitness
+    # names(polio)<-c(rep("polio",length(polio)))
+    #   polio.CDF<-polio[polio!=0]
 
     # Without lethal fractions
     flu_total.CDF<-flu_fitness_df$Total.CDF #all
@@ -160,19 +166,12 @@ library(tidyr)
 ```
 
 ```r
-  skewness(polio.CDF)
-```
-
-```
-## [1] -0.3176839
-```
-
-```r
+  #skewness(polio.CDF)
   skewness(flu_total.CDF)
 ```
 
 ```
-## [1] -1.170211
+## [1] -1.154976
 ```
 
 ```r
@@ -180,7 +179,7 @@ library(tidyr)
 ```
 
 ```
-## [1] -1.120054
+## [1] -1.119408
 ```
 
 ```r
@@ -188,7 +187,7 @@ library(tidyr)
 ```
 
 ```
-## [1] -0.8869894
+## [1] -0.8492888
 ```
 
 ```r
@@ -196,7 +195,7 @@ library(tidyr)
 ```
 
 ```
-## [1] -0.9867137
+## [1] -0.985991
 ```
 
 ```r
@@ -225,19 +224,12 @@ library(tidyr)
 ```
 
 ```r
-  kurtosis(polio.CDF)
-```
-
-```
-## [1] 3.461289
-```
-
-```r
+  #kurtosis(polio.CDF)
   kurtosis(flu_total.CDF)
 ```
 
 ```
-## [1] 3.901619
+## [1] 3.870024
 ```
 
 ```r
@@ -245,7 +237,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 3.479086
+## [1] 3.480084
 ```
 
 ```r
@@ -253,7 +245,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 3.803445
+## [1] 3.743653
 ```
 
 ```r
@@ -261,7 +253,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 2.980413
+## [1] 2.981663
 ```
 
 ```r
@@ -290,19 +282,12 @@ library(tidyr)
 ```
 
 ```r
-  mean(polio.CDF)
-```
-
-```
-## [1] 0.7467637
-```
-
-```r
+  #mean(polio.CDF)
   mean(flu_total.CDF)
 ```
 
 ```
-## [1] 0.8268889
+## [1] 0.8248315
 ```
 
 ```r
@@ -310,7 +295,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.7979688
+## [1] 0.7978125
 ```
 
 ```r
@@ -318,7 +303,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.8821951
+## [1] 0.87925
 ```
 
 ```r
@@ -326,7 +311,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.7806122
+## [1] 0.7804082
 ```
 
 ```r
@@ -336,7 +321,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.04405313
+## [1] 0.04419344
 ```
 
 ```r
@@ -344,7 +329,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.04791803
+## [1] 0.0478872
 ```
 
 ```r
@@ -352,7 +337,7 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.02547756
+## [1] 0.02576609
 ```
 
 ```r
@@ -360,19 +345,15 @@ library(tidyr)
 ```
 
 ```
-## [1] 0.0556517
+## [1] 0.055604
 ```
 
 ```r
     #polio
-  var(polio.CDF)
-```
+  #var(polio.CDF)
+  
 
-```
-## [1] 0.06880976
-```
 
-```r
 #t-tests for mean fitness for flu only
 #surface vs internal is the only one that makes sense and is legit to to do since all others are subsets of each other, so they represent the same samples.
 t.test(flu_surface.CDF, flu_internal.CDF)
@@ -383,13 +364,13 @@ t.test(flu_surface.CDF, flu_internal.CDF)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  flu_surface.CDF and flu_internal.CDF
-## t = 2.4233, df = 84.529, p-value = 0.01751
+## t = 2.3435, df = 84.464, p-value = 0.02145
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  0.01823114 0.18493461
+##  0.01497431 0.18270936
 ## sample estimates:
 ## mean of x mean of y 
-## 0.8821951 0.7806122
+## 0.8792500 0.7804082
 ```
 
 ```r
@@ -402,16 +383,16 @@ t.test(flu_surface.CDF, flu_internal.CDF)
 ```r
 #make df with all of the CDF fitness
 
-Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
+Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))#, polio.CDF))
 colnames(Big_fitness_df)<-"fitness"
-Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, polio.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))
+Big_fitness_df$virus<-names(c(phiX.CDF, QB.CDF,TEV.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))#, polio.CDF))
 
 #double check that these are only the non-lethals
 sum(Big_fitness_df$fitness > -1)
 ```
 
 ```
-## [1] 6920
+## [1] 374
 ```
 
 ```r
@@ -419,7 +400,7 @@ length(Big_fitness_df$fitness)
 ```
 
 ```
-## [1] 6920
+## [1] 374
 ```
 
 ```r
@@ -432,5 +413,5 @@ all_hist<-(ggplot(Big_fitness_df, aes(fitness, ..density.., colour = virus)) +
 plot(all_hist)
 ```
 
-![](distribution_analysis_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![plot of chunk distribution_his](figure/distribution_his-1.png)
 

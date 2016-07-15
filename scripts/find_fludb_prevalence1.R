@@ -1,56 +1,58 @@
 
 #This script finds the prevalence of mutaitons in our library that are in fludb
+require(plyr)
+
 
 # FIND PREVALENCE OF MUTANTS IN FLUDB
 #read in all of the tables from fludb
 #add colnames
 #delete extra column
 #PB2
-PB2_df<-read.table("PB2_fludb.txt",  sep = '\t')
+PB2_df<-read.table("../data/PB2_fludb.txt",  sep = '\t')
 PB2_df[,6]<-NULL
 colnames(PB2_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 
 #PB1
-PB1_df<-read.table("all_mutant_alignments/PB1_fludb.txt",  sep = '\t')
+PB1_df<-read.table("../data/PB1_fludb.txt",  sep = '\t')
 PB1_df[,7]<-NULL
 PB1_df<-PB1_df[,-2]
 colnames(PB1_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 
 #PB1_F2
-PB1_F2_df<-read.table("all_mutant_alignments/PB1_F2_fludb.txt",  sep = '\t')
+PB1_F2_df<-read.table("../data/PB1_F2_fludb.txt",  sep = '\t')
 PB1_F2_df[,6]<-NULL
 colnames(PB1_F2_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #PA
-PA_df<-read.table("all_mutant_alignments/PA_fludb.txt",  sep = '\t')
+PA_df<-read.table("../data/PA_fludb.txt",  sep = '\t')
 PA_df[,6]<-NULL
 colnames(PA_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #HA
-HA_df<-read.table("all_mutant_alignments/HA_fludb.txt",  sep = '\t')
+HA_df<-read.table("../data/HA_fludb.txt",  sep = '\t')
 HA_df[,6]<-NULL
 colnames(HA_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #NP
-NP_df<-read.table("all_mutant_alignments/NP_fludb.txt",  sep = '\t')
+NP_df<-read.table("../data/NP_fludb.txt",  sep = '\t')
 NP_df[,6]<-NULL
 colnames(NP_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #NA
-NA_df<-read.table("all_mutant_alignments/NA_fludb.txt",  sep = '\t')
+NA_df<-read.table("../data/NA_fludb.txt",  sep = '\t')
 NA_df[,6]<-NULL
 colnames(NA_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 
 #M1
-M1_df<-read.table("all_mutant_alignments/M1_fludb.txt",  sep = '\t')
+M1_df<-read.table("../data/M1_fludb.txt",  sep = '\t')
 M1_df[,6]<-NULL
 colnames(M1_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #M2
-M2_df<-read.table("all_mutant_alignments/M2_fludb.txt",  sep = '\t')
+M2_df<-read.table("../data/M2_fludb.txt",  sep = '\t')
 M2_df[,6]<-NULL
 colnames(M2_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #NS1
-NS1_df<-read.table("all_mutant_alignments/NS1_fludb.txt",  sep = '\t')
+NS1_df<-read.table("../data/NS1_fludb.txt",  sep = '\t')
 NS1_df[,6]<-NULL
 colnames(NS1_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 #NEP
-NEP_df<-read.table("all_mutant_alignments/NS2_fludb.txt",  sep = '\t')
+NEP_df<-read.table("../data/NS2_fludb.txt",  sep = '\t')
 NEP_df[,6]<-NULL
 colnames(NEP_df)<-c("AA_position","consensus","score","details","number_of_seqs")
 
@@ -104,7 +106,7 @@ all_muts_df$AA_position<-as.numeric(all_muts_df$AA_position)
 all_muts_df<-all_muts_df[with(all_muts_df, order(segment,AA_position)), ] #sort by segment and position
 
 # read in mutant list 
-our_subs_df<-read.table("all_mutant_alignments/mutant_excel_df.csv", sep = ",", header=T)
+our_subs_df<-read.table("../data/mutant_excel_df.csv", sep = ",", header=T)
 # get position only column for sorting
 our_subs_df$position<-gsub('[[:alpha:]]', '', our_subs_df$Amino.Acid.Change)
 our_subs_df$position<-gsub(" ", "", our_subs_df$position)
@@ -121,7 +123,7 @@ mut_prevalence_df$substitution<-substring(mut_prevalence_df$substitution,2)
 
 #need lookup table to convert from single letter code to abbreviation from fludb
 #read in codon vs single letter vs abbreviation table copied and pasted from wikipedia
-codon_table<-read.table("all_mutant_alignments/codon_table.csv", sep = ",", header=T)
+codon_table<-read.table("../data/codon_table.csv", sep = ",", header=T)
 colnames(codon_table)<-c("amino_acid","substitution","abbrev")
 mut_prevalence_df <-join(mut_prevalence_df,codon_table, by="substitution")
 
@@ -139,30 +141,4 @@ mut_prevalence_df$Amino_acid_abbreviation<-as.vector(mut_prevalence_df$Amino_aci
 
 #get prevalence
 # write to table and use python script to extract prevalence 
-write.table(mut_prevalence_df,"all_mutant_alignments/2016-07-10_mut_prevalence_df.txt",sep="\t", quote=F, row.names =F)
-
-#USE find_prevalence_column.py to find the substitutions that exist in fludb or prints none if they arent there.
-#read in this column and cbind it to our df so we can calculate prevalence
-prev_col<-read.table("all_mutant_alignments/prevalence_col.txt",sep='\n',header=F)
-
-mut_prevalence_df<-cbind(mut_prevalence_df,prev_col)
-mut_prevalence_df$occurence<-mut_prevalence_df$V1
-mut_prevalence_df$V1<-NULL
-#get only number of occurences in fludb
-mut_prevalence_df$occurence<-gsub('[[:alpha:]]', '', mut_prevalence_df$occurence)
-mut_prevalence_df$occurence<-gsub('=', '', mut_prevalence_df$occurence)
-mut_prevalence_df$occurence<-gsub(',', '', mut_prevalence_df$occurence)
-mut_prevalence_df$occurence<-gsub(' ', '', mut_prevalence_df$occurence)
-mut_prevalence_df$occurence<-as.numeric(mut_prevalence_df$occurence)
-
-#prevalence %
-mut_prevalence_df$percent_prevalence_in_fludb<-(mut_prevalence_df$occurence / mut_prevalence_df$number_of_sequences_with_position_in_fludb)*100
-
-write.table(mut_prevalence_df, "~/Desktop/2016-07-10_mutant_prevalence_df", quote=F, row.names =F, sep = '\t')
-
-
-#correlation test
-mut_prevalence_df$Fitness<-as.vector(mut_prevalence_df$Fitness)
-mut_prevalence_df$Fitness[mut_prevalence_df$Fitness =="lethal"]<-0
-mut_prevalence_df$Fitness<-as.numeric(mut_prevalence_df$Fitness)
-cor.test(mut_prevalence_df$Fitness, mut_prevalence_df$percent_prevalence_in_fludb, method = "spearman", na.rm = T)
+write.table(mut_prevalence_df,"../data/mut_prevalence_df_inprogess.txt",sep="\t", quote=F, row.names =F)

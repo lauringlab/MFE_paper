@@ -1,15 +1,12 @@
 ---
-title: "Untitled"
+title: "MFE distribution analysis"
 author: "Shawn Whitefield"
 date: "May 2, 2016"
 output:
-  github_document:
-    toc: true
-    toc_depth: 2
+  github_document
 ---
 
-
-##This is an R Markdown document for the MFE distribution analysis.
+This is an R Markdown document for the MFE distribution analysis.
 
 ##### load in packages for analysis
 ```{r}
@@ -40,8 +37,8 @@ library(tidyr)
 
   #these viruses are in therms of S so need to add 1
   #TEV
-  TEV_fitness_df<-read.csv("../data/TEV_parsing.csv")
-  TEV_fitness_df$s<-sub("\\(.*$","",TEV_fitness_df$Relative_fitness) #add column for fitness
+  TEV_fitness_df<-read.csv("../data/TEV_parsed.csv")
+  TEV_fitness_df$s<-sub("\\(.*$","",TEV_fitness_df$Relative.fitness) #add column for fitness
   TEV_fitness_df$fitness<-(as.numeric(TEV_fitness_df$s))+1
   TEV_fitness_df$virus<-"TEV"
   
@@ -140,7 +137,7 @@ library(tidyr)
   var(flu_surface.CDF)
   var(flu_internal.CDF)
     #polio
-  var(polio.CDF)
+  #var(polio.CDF)
   
 
 
@@ -154,7 +151,7 @@ t.test(flu_surface.CDF, flu_internal.CDF)
 
 ##### Histograms
 
-```{r}
+```{r,distribution_his}
 #make df with all of the CDF fitness
 
 Big_fitness_df<-as.data.frame(c(phiX.CDF, QB.CDF,TEV.CDF, flu_total.CDF, flu_random.CDF, flu_surface.CDF, flu_internal.CDF))#, polio.CDF))

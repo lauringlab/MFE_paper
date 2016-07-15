@@ -1,0 +1,902 @@
+1	1	Met	0	Met=7326	7326	View SF
+2	2	Asp	3	Ala=6,Asp=7329,Gly=5,His=5,Trp=1,Xaa=1	7347	View SF
+3	3	Val	2	Cys=6,Ile=3,Phe=4,Val=7355	7368	View SF
+4	4	Asn	2	Asn=7370,His=9,Ile=1,Ser=1	7381	View SF
+5	5	Pro	1	Ala=1,Leu=1,Pro=7400,Xaa=1	7403	View SF
+6	6	Thr	2	Ala=2,Ile=4,Pro=3,Ser=1,Thr=7416,Xaa=2	7428	View SF
+7	7	Leu	0	Leu=7447	7447	View SF
+8	8	Leu	1	His=1,Ile=2,Leu=7502,Phe=1,Pro=1,Val=1	7508	View SF
+9	9	Phe	0	Leu=1,Phe=7508,Ser=1	7510	View SF
+10	10	Leu	2	Gln=1,Ile=6,Leu=7509,Val=1,Xaa=2	7519	View SF
+11	11	Lys	1	Del=1,Lys=7519,Xaa=4	7524	View SF
+12	12	Ile	82	Asn=1,Del=1,Ile=5839,Leu=4,Met=2,Thr=36,Val=1640,Xaa=4	7527	View SF
+13	13	Pro	0	Del=1,Pro=7532,Xaa=1	7534	View SF
+14	14	Ala	4	Ala=7625,Del=1,Thr=8,Val=17	7651	View SF
+15	15	Gln	0	Del=1,Gln=7651	7652	View SF
+16	16	Asn	2	Asn=7643,Del=1,His=2,Lys=2,Ser=3,Xaa=2	7653	View SF
+17	17	Ala	1	Ala=7649,Del=1,Val=2,Xaa=2	7654	View SF
+18	18	Ile	0	Del=1,Ile=7652,Xaa=1	7654	View SF
+19	19	Ser	0	Del=1,Ser=7652,Xaa=1	7654	View SF
+20	20	Thr	8	Ala=1,Del=1,Ile=60,Thr=7588,Xaa=5	7655	View SF
+21	21	Thr	1	Del=1,Ile=1,Thr=7653,Xaa=1	7656	View SF
+22	22	Phe	1	Leu=3,Phe=7651,Xaa=2	7656	View SF
+23	23	Pro	0	Pro=7655,Xaa=1	7656	View SF
+24	24	Tyr	1	Tyr=7652,Xaa=4	7656	View SF
+25	25	Thr	0	Thr=7654,Xaa=2	7656	View SF
+26	26	Gly	0	Gly=7655,Xaa=1	7656	View SF
+27	27	Asp	1	Asn=1,Asp=7652,His=1,Xaa=2	7656	View SF
+28	28	Pro	0	Pro=7653,Xaa=3	7656	View SF
+29	29	Pro	0	Pro=7655,Xaa=2	7657	View SF
+30	30	Tyr	0	Cys=1,Tyr=7655,Xaa=1	7657	View SF
+31	31	Ser	1	Gly=6,Ser=7650,Xaa=1	7657	View SF
+32	32	His	0	His=7657	7657	View SF
+33	33	Gly	0	Gly=7657	7657	View SF
+34	34	Thr	0	Ala=1,Pro=1,Thr=7655	7657	View SF
+35	35	Gly	0	Gly=7657	7657	View SF
+36	36	Thr	0	Thr=7658	7658	View SF
+37	37	Gly	0	Gly=7657,Xaa=1	7658	View SF
+38	38	Tyr	2	His=12,Tyr=7645,Xaa=1	7658	View SF
+39	39	Thr	1	Ala=2,Ile=1,Thr=7655,Xaa=1	7659	View SF
+40	40	Met	1	Ile=7,Met=14897,Val=1,Xaa=1	14906	View SF
+41	41	Asp	1	Asp=14893,Glu=10,Xaa=3	14906	View SF
+42	42	Thr	0	Thr=14903,Xaa=3	14906	View SF
+43	43	Val	1	Val=14900,Xaa=6	14906	View SF
+44	44	Asn	1	Asn=14892,Ser=4,Thr=6,Xaa=4	14906	View SF
+45	45	Arg	0	Arg=14903,Xaa=3	14906	View SF
+46	46	Thr	0	Thr=14903,Xaa=3	14906	View SF
+47	47	His	0	Asn=2,His=14901,Xaa=3	14906	View SF
+48	48	Gln	2	Arg=4,Gln=14876,His=16,Lys=4,Xaa=6	14906	View SF
+49	49	Tyr	0	Tyr=14903,Xaa=3	14906	View SF
+50	50	Ser	0	Ala=2,Ser=14901,Xaa=3	14906	View SF
+51	51	Glu	2	Glu=14888,Gly=1,His=2,Lys=11,Xaa=5	14907	View SF
+52	52	Lys	77	Arg=3279,Asn=6,Gly=2,Lys=11612,Met=4,Xaa=4	14907	View SF
+53	53	Gly	1	Ala=2,Gly=14902,Xaa=4	14908	View SF
+54	54	Lys	79	Arg=3336,Glu=2,Ile=8,Lys=11550,Met=4,Thr=2,Val=1,Xaa=5	14908	View SF
+55	55	Trp	0	Trp=14903,Xaa=5	14908	View SF
+56	56	Thr	6	Ala=43,Lys=1,Met=32,Thr=14825,Xaa=7	14908	View SF
+57	57	Thr	78	Ala=2,Arg=2,Asn=4,Gln=2,Glu=17,Ile=41,Lys=3000,Thr=11833,Xaa=7	14908	View SF
+58	58	Asn	1	Asn=14899,Ser=2,Xaa=7	14908	View SF
+59	59	Thr	1	Ala=3,Pro=2,Thr=14896,Xaa=7	14908	View SF
+60	60	Glu	0	Glu=14903,Xaa=5	14908	View SF
+61	61	Thr	1	Asn=2,Ile=1,Thr=14901,Xaa=4	14908	View SF
+62	62	Gly	1	Arg=2,Asp=6,Glu=2,Gly=14894,Xaa=4	14908	View SF
+63	63	Ala	0	Ala=14903,Thr=1,Val=2,Xaa=2	14908	View SF
+64	64	Pro	4	His=14,Leu=18,Pro=14852,Ser=21,Xaa=4	14909	View SF
+65	65	Gln	1	Arg=2,Gln=14898,His=6,Xaa=3	14909	View SF
+66	66	Leu	0	Ile=2,Leu=14905,Xaa=2	14909	View SF
+67	67	Asn	1	Asn=14902,Asp=2,Ser=1,Xaa=4	14909	View SF
+68	68	Pro	0	Pro=14905,Xaa=4	14909	View SF
+69	69	Ile	3	Ile=14869,Val=35,Xaa=5	14909	View SF
+70	70	Asp	1	Asp=14898,Xaa=11	14909	View SF
+71	71	Gly	1	Gly=14897,Xaa=12	14909	View SF
+72	72	Pro	1	Pro=14898,Ser=2,Xaa=9	14909	View SF
+73	73	Leu	1	Leu=14898,Val=2,Xaa=9	14909	View SF
+74	74	Pro	1	Ala=2,Pro=14897,Xaa=10	14909	View SF
+75	75	Glu	33	Asp=6,Glu=14075,Gly=2,Lys=803,Thr=11,Xaa=12	14909	View SF
+76	76	Asp	3	Asn=10,Asp=14875,Gly=12,Tyr=1,Xaa=11	14909	View SF
+77	77	Asn	2	Asn=14883,Asp=10,His=2,Ser=2,Xaa=12	14909	View SF
+78	78	Glu	1	Glu=14893,Lys=4,Xaa=12	14909	View SF
+79	79	Pro	1	Pro=14901,Thr=2,Xaa=6	14909	View SF
+80	80	Ser	4	Asn=6,Cys=2,Ile=11,Ser=14859,Thr=25,Xaa=6	14909	View SF
+81	81	Gly	1	Gly=14900,Xaa=9	14909	View SF
+82	82	Tyr	1	Tyr=14904,Xaa=6	14910	View SF
+83	83	Ala	1	Ala=14896,Gly=4,Ser=4,Xaa=6	14910	View SF
+84	84	Gln	0	Gln=14906,Xaa=4	14910	View SF
+85	85	Thr	1	Thr=14905,Xaa=6	14911	View SF
+86	86	Asp	1	Asp=14899,Glu=6,Xaa=6	14911	View SF
+87	87	Cys	1	Cys=14903,Xaa=8	14911	View SF
+88	88	Val	1	Val=14897,Xaa=14	14911	View SF
+89	89	Leu	2	Gln=3,Leu=14893,Pro=2,Val=2,Xaa=11	14911	View SF
+90	90	Glu	1	Glu=14903,Xaa=8	14911	View SF
+91	91	Ala	1	Ala=14902,Xaa=10	14912	View SF
+92	92	Met	4	Ile=2,Leu=36,Met=14862,Val=1,Xaa=11	14912	View SF
+93	93	Ala	2	Ala=14895,Ser=2,Thr=6,Val=2,Xaa=8	14913	View SF
+94	94	Phe	2	Leu=8,Phe=14895,Ser=2,Xaa=8	14913	View SF
+95	95	Leu	1	Leu=14905,Xaa=8	14913	View SF
+96	96	Glu	2	Ala=2,Asp=7,Glu=14892,Gly=4,Xaa=8	14913	View SF
+97	97	Glu	3	Asp=2,Glu=14866,Lys=37,Xaa=8	14913	View SF
+98	98	Ser	3	Ala=4,Cys=1,Ser=14871,Thr=28,Xaa=9	14913	View SF
+99	99	His	2	Arg=6,Gln=6,His=14887,Xaa=14	14913	View SF
+100	100	Pro	1	Pro=14897,Thr=3,Xaa=13	14913	View SF
+101	101	Gly	1	Arg=2,Gly=14901,Xaa=10	14913	View SF
+102	102	Ile	1	Ile=14905,Xaa=8	14913	View SF
+103	103	Phe	1	Phe=14902,Xaa=11	14913	View SF
+104	104	Glu	2	Asp=4,Glu=14888,Gly=6,Val=3,Xaa=12	14913	View SF
+105	105	Asn	3	Asn=14870,Asp=1,Ser=16,Thr=16,Xaa=10	14913	View SF
+106	106	Ser	1	Ser=14903,Xaa=10	14913	View SF
+107	107	Cys	1	Cys=14901,Ser=2,Xaa=10	14913	View SF
+108	108	Leu	78	His=4,Ile=3237,Leu=11644,Phe=12,Val=6,Xaa=10	14913	View SF
+109	109	Glu	1	Glu=14901,Gly=2,Xaa=10	14913	View SF
+110	110	Thr	1	Ala=5,Thr=14897,Xaa=11	14913	View SF
+111	111	Met	5	Arg=2,Ile=37,Leu=8,Met=14850,Val=4,Xaa=12	14913	View SF
+112	112	Glu	1	Glu=14900,Lys=2,Xaa=12	14914	View SF
+113	113	Val	30	Ala=241,Ile=330,Leu=2,Phe=18,Val=14308,Xaa=15	14914	View SF
+114	114	Val	3	Ala=2,Ile=24,Val=14873,Xaa=15	14914	View SF
+115	115	Gln	2	Gln=14893,His=2,Xaa=19	14914	View SF
+116	116	Gln	1	Gln=14896,Lys=2,Xaa=16	14914	View SF
+117	117	Thr	2	Pro=3,Thr=14887,Xaa=24	14914	View SF
+118	118	Arg	2	Arg=14889,Xaa=25	14914	View SF
+119	119	Val	3	Ala=2,Glu=2,Ile=4,Leu=2,Val=14878,Xaa=26	14914	View SF
+120	120	Asp	2	Asp=14882,Xaa=33	14915	View SF
+121	121	Lys	4	Arg=33,Gln=2,Lys=14852,Xaa=28	14915	View SF
+122	122	Leu	1	Leu=14895,Xaa=20	14915	View SF
+123	123	Thr	3	Ala=20,Thr=14874,Xaa=21	14915	View SF
+124	124	Gln	1	Gln=14897,Lys=2,Xaa=17	14916	View SF
+125	125	Gly	1	Gly=14902,Xaa=14	14916	View SF
+126	126	Arg	2	Arg=14893,Cys=2,His=10,Ile=1,Leu=2,Xaa=8	14916	View SF
+127	127	Gln	1	Gln=14908,Xaa=8	14916	View SF
+128	128	Thr	1	Thr=14910,Xaa=6	14916	View SF
+129	129	Tyr	2	Phe=25,Tyr=14886,Xaa=5	14916	View SF
+130	130	Asp	1	Asp=14908,Xaa=8	14916	View SF
+131	131	Trp	1	Trp=14908,Xaa=8	14916	View SF
+132	132	Thr	1	Thr=14908,Xaa=8	14916	View SF
+133	133	Leu	1	Leu=14907,Xaa=9	14916	View SF
+134	134	Asn	1	Asn=14900,Asp=2,Lys=2,Ser=2,Xaa=10	14916	View SF
+135	135	Arg	1	Arg=14897,Lys=2,Xaa=17	14916	View SF
+136	136	Asn	1	Asn=14904,Tyr=1,Xaa=11	14916	View SF
+137	137	Gln	1	Gln=14903,Xaa=13	14916	View SF
+138	138	Pro	1	Pro=14896,Xaa=20	14916	View SF
+139	139	Ala	1	Ala=14902,Del=1,Xaa=13	14916	View SF
+140	140	Ala	1	Ala=14901,Del=1,Xaa=14	14916	View SF
+141	141	Thr	2	Ala=1,Del=1,Lys=10,Thr=14887,Xaa=17	14916	View SF
+142	142	Ala	2	Ala=14895,Del=1,Xaa=20	14916	View SF
+143	143	Leu	1	Del=1,Leu=14897,Xaa=18	14916	View SF
+144	144	Ala	1	Ala=14897,Del=1,Xaa=18	14916	View SF
+145	145	Asn	2	Asn=14895,Asp=2,Del=1,Xaa=18	14916	View SF
+146	146	Thr	1	Del=1,Thr=14897,Xaa=18	14916	View SF
+147	147	Ile	2	Del=1,Ile=14887,Val=8,Xaa=20	14916	View SF
+148	148	Glu	1	Del=1,Gln=2,Glu=14900,Xaa=13	14916	View SF
+149	149	Val	1	Del=1,Ile=4,Val=14898,Xaa=13	14916	View SF
+150	150	Phe	1	Del=1,Leu=2,Phe=14898,Ser=2,Xaa=13	14916	View SF
+151	151	Arg	2	Arg=14890,Del=1,Gly=2,Lys=6,Xaa=17	14916	View SF
+152	152	Ser	6	Ala=10,Del=1,Leu=45,Met=5,Ser=14838,Thr=2,Xaa=15	14916	View SF
+153	153	Asn	2	Asn=14890,Del=1,Thr=2,Xaa=21	14914	View SF
+154	154	Gly	49	Ala=2,Asn=2,Asp=1423,Del=2,Glu=4,Gly=13437,Ser=23,Xaa=20	14913	View SF
+155	155	Leu	2	Del=2,Ile=2,Leu=14893,Xaa=16	14913	View SF
+156	156	Thr	84	Ala=1,Arg=9,Del=2,Ile=2789,Lys=9,Met=246,Thr=11839,Val=4,Xaa=14	14913	View SF
+157	157	Ala	5	Ala=14846,Asp=6,Del=2,Ser=12,Thr=20,Val=11,Xaa=16	14913	View SF
+158	158	Asn	5	Asn=14849,Del=2,Ile=2,Lys=3,Ser=40,Xaa=16	14912	View SF
+159	159	Glu	3	Asp=6,Del=2,Glu=14872,Gly=2,Lys=14,Val=2,Xaa=14	14912	View SF
+160	160	Ser	2	Del=2,Phe=2,Ser=14891,Thr=2,Xaa=14	14911	View SF
+161	161	Gly	2	Arg=1,Del=2,Gly=14891,Xaa=16	14910	View SF
+162	162	Arg	2	Arg=14883,Del=2,Xaa=23	14908	View SF
+163	163	Leu	2	Del=2,Leu=14878,Pro=6,Xaa=18	14904	View SF
+164	164	Ile	11	Del=2,Ile=14714,Leu=2,Val=157,Xaa=26	14901	View SF
+165	165	Asp	2	Ala=2,Asp=14863,Del=2,Tyr=2,Xaa=21	14890	View SF
+166	166	Phe	2	Del=2,Leu=3,Phe=14833,Xaa=22	14860	View SF
+167	167	Leu	2	Del=2,Ile=2,Leu=14836,Xaa=20	14860	View SF
+168	168	Lys	2	Del=2,Lys=14836,Xaa=22	14860	View SF
+169	169	Asp	2	Asp=14838,Del=2,Xaa=20	14860	View SF
+170	170	Val	2	Del=2,Ile=2,Val=14835,Xaa=21	14860	View SF
+171	171	Met	5	Del=2,Ile=30,Met=14796,Thr=2,Val=9,Xaa=20	14859	View SF
+172	172	Glu	10	Asp=112,Del=2,Glu=14698,Gly=6,Lys=20,Xaa=21	14859	View SF
+173	173	Ser	2	Ala=2,Del=2,Ser=14834,Xaa=21	14859	View SF
+174	174	Met	5	Del=2,Ile=10,Leu=6,Met=14796,Thr=10,Val=14,Xaa=21	14859	View SF
+175	175	Asn	78	Asn=11608,Asp=3218,Del=2,Glu=2,Lys=4,Ser=2,Thr=2,Xaa=21	14859	View SF
+176	176	Lys	79	Arg=2855,Del=2,Glu=2,Ile=118,Lys=11858,Thr=2,Xaa=22	14859	View SF
+177	177	Glu	85	Ala=2,Asn=6,Asp=1455,Del=2,Gln=2,Glu=12348,Gly=1000,Lys=4,Ser=14,Xaa=26	14859	View SF
+178	178	Glu	5	Del=2,Glu=14797,Gly=26,Lys=8,Xaa=26	14859	View SF
+179	179	Ile	89	Del=2,Ile=11680,Leu=3,Met=436,Val=2714,Xaa=24	14859	View SF
+180	180	Glu	12	Del=2,Gln=2,Glu=14646,Gly=181,Lys=4,Xaa=24	14859	View SF
+181	181	Ile	64	Del=2,Ile=12568,Met=3,Val=2266,Xaa=20	14859	View SF
+182	182	Thr	6	Del=2,Ile=28,Met=1,Thr=14781,Val=24,Xaa=22	14858	View SF
+183	183	Thr	2	Del=2,Ile=4,Ser=1,Thr=14829,Xaa=22	14858	View SF
+184	184	His	2	Del=2,His=14835,Xaa=21	14858	View SF
+185	185	Phe	2	Del=2,Phe=14834,Xaa=22	14858	View SF
+186	186	Gln	2	Del=2,Gln=14832,Xaa=23	14857	View SF
+187	187	Arg	2	Arg=14823,Del=2,Lys=2,Xaa=30	14857	View SF
+188	188	Lys	3	Arg=4,Del=2,Glu=5,Lys=14819,Xaa=27	14857	View SF
+189	189	Arg	3	Arg=14812,Del=2,Gly=4,Lys=10,Xaa=29	14857	View SF
+190	190	Arg	3	Arg=14823,Del=2,Ile=2,Lys=4,Ser=2,Xaa=24	14857	View SF
+191	191	Val	9	Del=2,Ile=121,Met=4,Val=14706,Xaa=24	14857	View SF
+192	192	Arg	2	Arg=14829,Del=2,Ile=2,Ser=2,Xaa=22	14857	View SF
+193	193	Asp	2	Asp=14833,B=1,Del=2,Xaa=21	14857	View SF
+194	194	Asn	3	Asn=14818,Del=2,Lys=2,Ser=12,Tyr=2,Xaa=21	14857	View SF
+195	195	Met	78	Ala=10,Del=2,Ile=24,Leu=11,Met=11746,Thr=2,Val=3042,Xaa=20	14857	View SF
+196	196	Thr	2	Del=2,Thr=14835,Xaa=20	14857	View SF
+197	197	Lys	3	Arg=10,Asn=6,Del=2,Lys=14816,Xaa=23	14857	View SF
+198	198	Lys	3	Arg=12,Del=2,Lys=14819,Xaa=24	14857	View SF
+199	199	Met	3	Del=2,Ile=2,Met=14821,Val=2,Xaa=30	14857	View SF
+200	200	Val	15	Ala=2,Del=2,Ile=235,Met=2,Phe=2,Val=14579,Xaa=36	14858	View SF
+201	201	Thr	3	Del=3,Thr=14817,Xaa=38	14858	View SF
+202	202	Gln	4	Del=3,Gln=14810,His=4,Leu=6,Xaa=35	14858	View SF
+203	203	Arg	3	Arg=14821,Del=3,Lys=2,Xaa=32	14858	View SF
+204	204	Thr	3	Del=3,Ile=2,Thr=14824,Xaa=29	14858	View SF
+205	205	Ile	11	Del=3,Ile=14664,Met=150,Thr=1,Val=4,Xaa=36	14858	View SF
+206	206	Gly	3	Arg=2,Del=3,Gly=14822,Xaa=31	14858	View SF
+207	207	Lys	3	Arg=2,Del=3,Lys=14813,Ser=2,Xaa=38	14858	View SF
+208	208	Lys	12	Arg=84,Del=3,Lys=14650,Xaa=121	14858	View SF
+209	209	Lys	4	Arg=6,Asn=4,Del=3,Lys=14806,Xaa=39	14858	View SF
+210	210	Gln	76	Arg=2,Asn=8,Del=3,Gln=11866,His=2928,Leu=4,Xaa=47	14858	View SF
+211	211	Arg	77	Arg=11711,Asn=2,Del=3,Lys=3096,Xaa=46	14858	View SF
+212	212	Leu	7	Cys=2,Del=3,Leu=14759,Met=2,Val=59,Xaa=33	14858	View SF
+213	213	Asn	75	Ala=7,Asn=12017,Asp=2764,Del=3,Glu=4,Gly=4,His=1,Lys=4,Ser=18,Thr=6,Xaa=30	14858	View SF
+214	214	Lys	3	Arg=10,Del=3,Glu=1,Lys=14815,Xaa=29	14858	View SF
+215	215	Arg	5	Arg=14786,Del=3,Ile=2,Lys=31,Ser=6,Xaa=30	14858	View SF
+216	216	Gly	84	Ala=2,Asn=10,Asp=64,Del=3,Gly=11393,Ser=3355,Val=2,Xaa=29	14858	View SF
+217	217	Tyr	3	Cys=4,Del=3,Tyr=14818,Xaa=33	14858	View SF
+218	218	Leu	4	Del=3,Ile=13,Leu=14809,Xaa=33	14858	View SF
+219	219	Ile	3	Arg=2,Del=3,Ile=14815,Thr=2,Val=3,Xaa=33	14858	View SF
+220	220	Arg	3	Arg=14813,Del=3,Lys=9,Xaa=33	14858	View SF
+221	221	Ala	3	Ala=14815,Del=3,Ser=2,Thr=2,Xaa=36	14858	View SF
+222	222	Leu	3	Del=3,Leu=14817,Xaa=38	14858	View SF
+223	223	Thr	3	Del=3,Ser=2,Thr=14816,Xaa=37	14858	View SF
+224	224	Leu	3	Cys=1,Del=3,Leu=14816,Xaa=39	14859	View SF
+225	225	Asn	3	Asn=14819,Del=3,Xaa=37	14859	View SF
+226	226	Thr	3	Del=3,Ser=6,Thr=14813,Xaa=37	14859	View SF
+227	227	Met	3	Del=3,Met=14818,Ser=1,Xaa=37	14859	View SF
+228	228	Thr	3	Del=3,Pro=1,Thr=14818,Xaa=37	14859	View SF
+229	229	Lys	3	Del=3,Gln=2,Ile=2,Lys=14812,Xaa=40	14859	View SF
+230	230	Asp	3	Asp=14817,Del=3,Xaa=39	14859	View SF
+231	231	Ala	3	Ala=14815,Del=3,Gly=2,Xaa=39	14859	View SF
+232	232	Glu	3	Del=3,Glu=14816,Xaa=40	14859	View SF
+233	233	Arg	3	Arg=14813,Del=3,Gly=2,Xaa=41	14859	View SF
+234	234	Gly	3	Del=4,Gly=14816,Xaa=40	14860	View SF
+235	235	Lys	3	Arg=1,Del=4,Lys=14815,Xaa=40	14860	View SF
+236	236	Leu	3	Del=4,Leu=14812,Val=2,Xaa=42	14860	View SF
+237	237	Lys	4	Arg=11,Del=4,Lys=14807,Xaa=38	14860	View SF
+238	238	Arg	3	Arg=14814,Del=3,Xaa=43	14860	View SF
+239	239	Arg	3	Arg=14820,Del=3,Xaa=37	14860	View SF
+240	240	Ala	3	Ala=14813,Del=3,Pro=2,Ser=2,Thr=2,Xaa=39	14861	View SF
+241	241	Ile	3	Del=3,Ile=14817,Val=4,Xaa=37	14861	View SF
+242	242	Ala	3	Ala=14821,Del=3,Xaa=37	14861	View SF
+243	243	Thr	3	Del=3,Thr=14823,Xaa=35	14861	View SF
+244	244	Pro	3	Del=3,Pro=14823,Xaa=35	14861	View SF
+245	245	Gly	3	Del=3,Gly=14822,Xaa=36	14861	View SF
+246	246	Met	3	Del=3,Met=14823,Xaa=35	14861	View SF
+247	247	Gln	3	Del=3,Gln=14821,Xaa=37	14861	View SF
+248	248	Ile	3	Del=3,Ile=14821,Xaa=37	14861	View SF
+249	249	Arg	3	Arg=14820,Del=3,Xaa=38	14861	View SF
+250	250	Gly	3	Del=3,Gly=14819,Xaa=39	14861	View SF
+251	251	Phe	3	Del=3,Phe=14817,Tyr=2,Xaa=39	14861	View SF
+252	252	Val	3	Del=3,Val=14819,Xaa=39	14861	View SF
+253	253	Tyr	4	Asp=2,Del=3,His=13,Phe=2,Tyr=14800,Xaa=41	14861	View SF
+254	254	Phe	4	Cys=3,Del=3,Leu=4,Phe=14810,Xaa=41	14861	View SF
+255	255	Val	3	Ala=3,Del=3,Val=14814,Xaa=41	14861	View SF
+256	256	Glu	4	Asp=2,Del=3,Glu=14810,Gly=1,Xaa=45	14861	View SF
+257	257	Thr	25	Ala=415,Del=3,Ile=34,Ser=6,Thr=14352,Xaa=51	14861	View SF
+258	258	Leu	3	Del=3,Leu=14811,Xaa=47	14861	View SF
+259	259	Ala	3	Ala=14811,Del=3,Xaa=47	14861	View SF
+260	260	Arg	4	Arg=14799,Del=3,Gly=2,Lys=10,Xaa=47	14861	View SF
+261	261	Ser	7	Arg=2,Asn=40,Cys=2,Del=3,Gly=6,Ser=14760,Xaa=48	14861	View SF
+262	262	Ile	3	Del=3,Ile=14813,Xaa=45	14861	View SF
+263	263	Cys	3	Cys=14812,Del=3,Xaa=46	14861	View SF
+264	264	Glu	4	Del=3,Glu=14809,Gly=4,Xaa=45	14861	View SF
+265	265	Lys	4	Del=3,Glu=2,Lys=14809,Xaa=47	14861	View SF
+266	266	Leu	3	Del=3,Leu=14812,Xaa=46	14861	View SF
+267	267	Glu	3	Del=3,Glu=14811,Lys=2,Xaa=45	14861	View SF
+268	268	Gln	4	Arg=6,Del=3,Gln=14806,Xaa=46	14861	View SF
+269	269	Ser	3	Ala=3,Del=3,Ser=14811,Xaa=44	14861	View SF
+270	270	Gly	3	Ala=2,Del=3,Gly=14815,Xaa=41	14861	View SF
+271	271	Leu	4	Del=3,Leu=14804,Xaa=54	14861	View SF
+272	272	Pro	3	Del=3,Pro=14809,Xaa=49	14861	View SF
+273	273	Val	4	Del=3,Ile=14,Val=14796,Xaa=48	14861	View SF
+274	274	Gly	3	Del=3,Gly=14809,Xaa=49	14861	View SF
+275	275	Gly	3	Del=3,Gly=14816,Xaa=42	14861	View SF
+276	276	Asn	3	Asn=14820,Del=3,Xaa=38	14861	View SF
+277	277	Glu	3	Del=3,Glu=14819,Xaa=39	14861	View SF
+278	278	Lys	3	Del=3,Glu=1,Lys=14813,Xaa=44	14861	View SF
+279	279	Lys	3	Asn=2,Del=3,Lys=14817,Xaa=39	14861	View SF
+280	280	Ala	4	Ala=14808,Del=3,Gly=7,Ser=2,Xaa=41	14861	View SF
+281	281	Lys	3	Del=3,Gln=1,Gly=2,Lys=14815,Xaa=40	14861	View SF
+282	282	Leu	3	Del=3,Leu=14817,Met=1,Xaa=40	14861	View SF
+283	283	Ala	3	Ala=14816,Del=3,Val=2,Xaa=40	14861	View SF
+284	284	Asn	3	Asn=14818,Del=3,Ser=4,Xaa=36	14861	View SF
+285	285	Val	3	Del=3,Leu=1,Val=14821,Xaa=36	14861	View SF
+286	286	Val	3	Del=3,Val=14822,Xaa=36	14861	View SF
+287	287	Arg	3	Arg=14818,Del=3,Gly=2,Xaa=38	14861	View SF
+288	288	Lys	3	Del=3,Lys=14819,Xaa=39	14861	View SF
+289	289	Met	3	Del=2,Met=14819,Xaa=39	14860	View SF
+290	290	Met	3	Del=2,Met=14814,Thr=2,Val=2,Xaa=40	14860	View SF
+291	291	Thr	6	Ala=27,Del=2,Ile=10,Ser=4,Thr=14773,Xaa=44	14860	View SF
+292	292	Asn	6	Asn=14769,Asp=2,Del=2,Ser=42,Thr=4,Xaa=41	14860	View SF
+293	293	Ser	3	Del=2,Pro=2,Ser=14813,Xaa=43	14860	View SF
+294	294	Gln	4	Del=2,Gln=14806,His=8,Lys=2,Xaa=42	14860	View SF
+295	295	Asp	3	Asp=14816,Del=2,Xaa=42	14860	View SF
+296	296	Thr	3	Ala=2,Del=2,Thr=14813,Xaa=43	14860	View SF
+297	297	Glu	3	Del=2,Glu=14817,Xaa=41	14860	View SF
+298	298	Ile	19	Del=2,Ile=14496,Leu=295,Thr=6,Val=20,Xaa=41	14860	View SF
+299	299	Ser	4	Del=2,Phe=14,Ser=14801,Xaa=43	14860	View SF
+300	300	Phe	3	Del=2,Leu=2,Phe=14813,Xaa=43	14860	View SF
+301	301	Thr	3	Del=2,Thr=14813,Xaa=45	14860	View SF
+302	302	Ile	4	Del=2,Ile=14807,Ser=2,Val=4,Xaa=45	14860	View SF
+303	303	Thr	3	Del=2,Ser=2,Thr=14815,Xaa=41	14860	View SF
+304	304	Gly	3	Del=2,Gly=14815,Xaa=43	14860	View SF
+305	305	Asp	3	Asp=14812,Del=2,Xaa=46	14860	View SF
+306	306	Asn	3	Asn=14812,Del=2,Ser=2,Thr=1,Tyr=2,Xaa=41	14860	View SF
+307	307	Thr	3	Del=2,Pro=2,Thr=14815,Xaa=41	14860	View SF
+308	308	Lys	3	Del=2,Glu=2,Lys=14814,Xaa=42	14860	View SF
+309	309	Trp	3	Del=1,Trp=14818,Xaa=41	14860	View SF
+310	310	Asn	3	Asn=14816,Del=1,Xaa=43	14860	View SF
+311	311	Glu	3	Del=1,Glu=14816,Xaa=43	14860	View SF
+312	312	Asn	3	Asn=14815,Del=1,Xaa=44	14860	View SF
+313	313	Gln	3	Del=1,Gln=14815,Xaa=44	14860	View SF
+314	314	Asn	3	Asn=14811,Del=1,His=2,Xaa=46	14860	View SF
+315	315	Pro	3	Del=1,Pro=14814,Xaa=45	14860	View SF
+316	316	Arg	3	Arg=14812,Del=1,Xaa=47	14860	View SF
+317	317	Met	5	Del=1,Ile=20,Met=14783,Val=11,Xaa=45	14860	View SF
+318	318	Phe	3	Del=1,Leu=2,Phe=14810,Xaa=47	14860	View SF
+319	319	Leu	3	Del=1,Leu=14812,Xaa=47	14860	View SF
+320	320	Ala	4	Ala=14803,Del=1,Gly=6,Pro=2,Xaa=48	14860	View SF
+321	321	Met	3	Del=1,Met=14813,Val=2,Xaa=44	14860	View SF
+322	322	Ile	4	Asn=2,Del=1,Ile=14805,Val=7,Xaa=45	14860	View SF
+323	323	Thr	3	Del=1,Lys=2,Thr=14813,Xaa=44	14860	View SF
+324	324	Tyr	3	Del=1,Tyr=14813,Xaa=46	14860	View SF
+325	325	Ile	14	Del=1,Ile=14597,Met=208,Val=8,Xaa=47	14861	View SF
+326	326	Thr	4	Del=1,Ile=2,Pro=2,Ser=2,Thr=14810,Xaa=44	14861	View SF
+327	327	Arg	69	Arg=12276,Del=1,Lys=2531,Xaa=53	14861	View SF
+328	328	Asn	8	Asn=14756,Asp=11,B=1,Del=1,Lys=14,Ser=22,Thr=6,Xaa=50	14861	View SF
+329	329	Gln	3	Del=1,Gln=14810,Xaa=50	14861	View SF
+330	330	Pro	4	Del=1,Pro=14797,Xaa=63	14861	View SF
+331	331	Glu	6	Asp=2,Del=1,Glu=14777,Gly=4,Lys=14,Val=2,Xaa=61	14861	View SF
+332	332	Trp	3	Del=1,Trp=14812,Xaa=48	14861	View SF
+333	333	Phe	3	Del=1,Phe=14810,Ser=2,Xaa=48	14861	View SF
+334	334	Arg	3	Arg=14816,Del=1,Lys=2,Xaa=42	14861	View SF
+335	335	Asn	3	Asn=14814,Del=1,Xaa=46	14861	View SF
+336	336	Ile	22	Ala=4,Del=1,Ile=14398,Thr=6,Val=409,Xaa=44	14862	View SF
+337	337	Leu	3	Del=1,Leu=14813,Met=2,Val=2,Xaa=44	14862	View SF
+338	338	Ser	3	Del=1,Gly=2,Ser=14816,Xaa=43	14862	View SF
+339	339	Met	87	Del=1,Ile=3214,Met=11446,Thr=4,Val=151,Xaa=46	14862	View SF
+340	340	Ala	3	Ala=14817,Del=1,Xaa=44	14862	View SF
+341	341	Pro	3	Pro=14814,Ser=2,Xaa=46	14862	View SF
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+N/A	-N/A-	-	0	Del=14861,Xaa=1	14862	N/A
+342	342	Ile	3	Del=1,Ile=14815,Val=6,Xaa=41	14863	View SF
+343	343	Met	3	Del=1,Met=14823,Xaa=39	14863	View SF
+344	344	Phe	3	Del=1,Leu=2,Phe=14821,Xaa=39	14863	View SF
+345	345	Ser	3	Del=1,Ser=14823,Xaa=39	14863	View SF
+346	346	Asn	3	Asn=14821,Del=1,Xaa=41	14863	View SF
+347	347	Lys	3	Del=1,Lys=14817,Xaa=45	14863	View SF
+348	348	Met	4	Del=1,Leu=8,Met=14808,Val=4,Xaa=42	14863	View SF
+349	349	Ala	6	Ala=14776,Del=1,Thr=3,Val=42,Xaa=41	14863	View SF
+350	350	Arg	4	Arg=14800,Del=1,Lys=19,Xaa=43	14863	View SF
+351	351	Leu	6	Del=1,Ile=38,Leu=14779,Xaa=45	14863	View SF
+352	352	Gly	3	Del=1,Gly=14822,Xaa=40	14863	View SF
+353	353	Lys	24	Arg=492,Del=1,Lys=14321,Xaa=49	14863	View SF
+354	354	Gly	3	Del=1,Gly=14820,Xaa=42	14863	View SF
+355	355	Tyr	3	Asn=2,Del=1,Tyr=14815,Xaa=45	14863	View SF
+356	356	Met	3	Ala=2,Del=1,Lys=1,Met=14815,Val=2,Xaa=42	14863	View SF
+357	357	Phe	3	Del=1,Phe=14817,Xaa=45	14863	View SF
+358	358	Glu	5	Asp=4,Del=1,Glu=14797,Gly=2,Lys=16,Xaa=43	14863	View SF
+359	359	Ser	3	Del=1,Ser=14822,Xaa=40	14863	View SF
+360	360	Lys	4	Arg=4,Del=1,Glu=6,Lys=14814,Xaa=38	14863	View SF
+361	361	Arg	85	Arg=11443,Asn=28,Del=1,Gly=3,Ile=2,Lys=56,Ser=3288,Xaa=42	14863	View SF
+362	362	Met	3	Del=1,Ile=4,Leu=2,Met=14818,Xaa=38	14863	View SF
+363	363	Lys	6	Arg=58,Del=1,Gln=2,Lys=14767,Xaa=35	14863	View SF
+364	364	Ile	81	Del=1,Ile=11435,Leu=3370,Met=4,Val=14,Xaa=39	14863	View SF
+365	365	Arg	3	Arg=14821,Del=1,Xaa=41	14863	View SF
+366	366	Thr	3	Del=1,Thr=14824,Xaa=38	14863	View SF
+367	367	Gln	3	Arg=2,Del=1,Gln=14814,His=2,Lys=2,Xaa=42	14863	View SF
+368	368	Ile	4	Arg=1,Del=1,Ile=14811,Leu=2,Val=10,Xaa=38	14863	View SF
+369	369	Pro	4	Del=1,Pro=14803,Ser=20,Xaa=39	14863	View SF
+370	370	Ala	4	Ala=14809,Del=1,Ser=4,Val=10,Xaa=39	14863	View SF
+371	371	Glu	4	Asp=2,Del=1,Glu=14813,Gly=2,Lys=2,Xaa=43	14863	View SF
+372	372	Met	18	Del=1,Ile=285,Leu=4,Lys=2,Met=14516,Val=12,Xaa=43	14863	View SF
+373	373	Leu	4	Del=1,Ile=18,Leu=14805,Xaa=39	14863	View SF
+374	374	Ala	11	Ala=14693,Del=1,Ser=30,Thr=30,Val=67,Xaa=42	14863	View SF
+375	375	Ser	90	Asn=2924,Asp=252,Del=1,Gly=50,Ser=11590,Thr=3,Xaa=43	14863	View SF
+376	376	Ile	3	Del=1,Ile=14815,Val=4,Xaa=43	14863	View SF
+377	377	Asp	4	Asn=5,Asp=14807,Del=1,Glu=2,Gly=6,Xaa=42	14863	View SF
+378	378	Leu	3	Del=1,Leu=14816,Met=2,Xaa=44	14863	View SF
+379	379	Lys	11	Arg=141,Del=1,Glu=2,Lys=14672,Xaa=47	14863	View SF
+380	380	Tyr	3	Del=1,Tyr=14820,Xaa=43	14864	View SF
+381	381	Phe	3	Del=1,Phe=14818,Tyr=2,Xaa=43	14864	View SF
+382	382	Asn	3	Asn=14817,Del=1,Ser=2,Tyr=2,Xaa=42	14864	View SF
+383	383	Glu	76	Asn=1,Asp=3027,Del=1,Glu=11788,Gly=8,Xaa=39	14864	View SF
+384	384	Ser	6	Del=1,Pro=46,Ser=14774,Thr=2,Xaa=41	14864	View SF
+385	385	Thr	3	Del=1,Ile=2,Thr=14819,Xaa=42	14864	View SF
+386	386	Lys	29	Arg=660,Del=1,Lys=14165,Xaa=38	14864	View SF
+387	387	Lys	9	Arg=100,Del=1,Gly=2,Lys=14715,Met=6,Xaa=40	14864	View SF
+388	388	Lys	3	Arg=12,Del=1,Lys=14816,Xaa=35	14864	View SF
+389	389	Ile	3	Asn=2,Del=1,Ile=14824,Thr=1,Val=2,Xaa=34	14864	View SF
+390	390	Glu	4	Arg=2,Asp=2,Del=1,Glu=14815,Gly=3,Lys=2,Val=2,Xaa=37	14864	View SF
+391	391	Lys	5	Arg=8,Del=1,Glu=12,Lys=14801,Thr=6,Xaa=36	14864	View SF
+392	392	Ile	4	Del=1,Ile=14806,Leu=6,Met=4,Thr=2,Val=6,Xaa=39	14864	View SF
+393	393	Arg	4	Arg=14807,Del=2,Lys=10,Thr=2,Xaa=43	14864	View SF
+394	394	Pro	4	Del=2,His=2,Pro=14805,Ser=4,Xaa=51	14864	View SF
+395	395	Leu	4	Del=2,Ile=2,Leu=14809,Xaa=51	14864	View SF
+396	396	Leu	5	Del=2,Ile=4,Leu=14794,Phe=2,Xaa=62	14864	View SF
+397	397	Ile	57	Del=2,Glu=2,Ile=13027,Leu=2,Met=1772,Thr=2,Xaa=57	14864	View SF
+398	398	Asp	16	Asn=14,Asp=14576,Del=2,Glu=219,Xaa=53	14864	View SF
+399	399	Gly	4	Asp=2,Del=2,Gly=14811,Xaa=49	14864	View SF
+400	400	Thr	6	Ala=34,Del=2,Thr=14782,Xaa=46	14864	View SF
+401	401	Ala	4	Ala=14810,Del=2,Val=16,Xaa=37	14865	View SF
+402	402	Ser	3	Ala=1,Del=2,Pro=2,Ser=14818,Xaa=41	14864	View SF
+403	403	Leu	3	Del=2,Leu=14823,Xaa=39	14864	View SF
+404	404	Ser	3	Del=2,Ser=14819,Xaa=43	14864	View SF
+405	405	Pro	3	Del=2,Pro=14821,Xaa=41	14864	View SF
+406	406	Gly	3	Del=2,Gly=14823,Xaa=40	14865	View SF
+407	407	Met	3	Arg=2,Del=1,Met=14822,Xaa=40	14865	View SF
+408	408	Met	3	Del=1,Met=14824,Xaa=40	14865	View SF
+409	409	Met	3	Del=1,Met=14824,Xaa=40	14865	View SF
+410	410	Gly	3	Del=1,Gly=14824,Xaa=40	14865	View SF
+411	411	Met	3	Del=1,Met=14824,Xaa=40	14865	View SF
+412	412	Phe	3	Asn=2,Del=1,Phe=14824,Xaa=38	14865	View SF
+413	413	Asn	3	Asn=14822,Del=1,Lys=2,Xaa=40	14865	View SF
+414	414	Met	3	Del=1,Ile=2,Met=14820,Val=2,Xaa=40	14865	View SF
+415	415	Leu	3	Del=1,Leu=14822,Xaa=42	14865	View SF
+416	416	Ser	3	Del=1,Ser=14826,Xaa=38	14865	View SF
+417	417	Thr	3	Del=1,Thr=14825,Xaa=39	14865	View SF
+418	418	Val	3	Del=1,Ile=4,Val=14817,Xaa=43	14865	View SF
+419	419	Leu	3	Del=1,Leu=14823,Xaa=41	14865	View SF
+420	420	Gly	3	Del=1,Gly=14824,Xaa=40	14865	View SF
+421	421	Val	3	Del=1,Val=14825,Xaa=38	14864	View SF
+422	422	Ser	3	Ala=2,Del=1,Leu=2,Ser=14821,Xaa=38	14864	View SF
+423	423	Ile	4	Del=1,Ile=14813,Leu=4,Thr=2,Val=6,Xaa=38	14864	View SF
+424	424	Leu	3	Del=1,Leu=14825,Met=2,Xaa=36	14864	View SF
+425	425	Asn	3	Asn=14827,Del=1,Xaa=36	14864	View SF
+426	426	Leu	4	Del=1,Ile=6,Leu=14815,Phe=4,Xaa=38	14864	View SF
+427	427	Gly	3	Del=1,Gly=14825,Xaa=38	14864	View SF
+428	428	Gln	3	Del=1,Gln=14818,His=2,Lys=4,Xaa=39	14864	View SF
+429	429	Lys	3	Arg=5,Del=1,Lys=14815,Xaa=43	14864	View SF
+430	430	Lys	81	Arg=3272,Del=1,Glu=24,Gly=2,Lys=11519,Xaa=46	14864	View SF
+431	431	Tyr	5	His=42,Tyr=14783,Xaa=39	14864	View SF
+432	432	Thr	3	Thr=14825,Xaa=39	14864	View SF
+433	433	Lys	4	Arg=16,Lys=14806,Xaa=42	14864	View SF
+434	434	Thr	3	Thr=14816,Xaa=48	14864	View SF
+435	435	Ile	116	Ala=18,Ile=9049,Met=12,Ser=6,Thr=5334,Val=394,Xaa=51	14864	View SF
+436	436	Tyr	3	Cys=2,Tyr=14818,Xaa=44	14864	View SF
+437	437	Trp	3	Arg=2,Cys=2,Trp=14817,Xaa=43	14864	View SF
+438	438	Trp	3	Trp=14822,Xaa=42	14864	View SF
+439	439	Asp	3	Asp=14816,Glu=2,Xaa=46	14864	View SF
+440	440	Gly	3	Gly=14822,Xaa=42	14864	View SF
+441	441	Leu	3	Ile=2,Leu=14820,Xaa=42	14864	View SF
+442	442	Gln	3	Gln=14821,Pro=2,Xaa=41	14864	View SF
+443	443	Ser	3	Ser=14823,Xaa=41	14864	View SF
+444	444	Ser	3	Ser=14823,Xaa=41	14864	View SF
+445	445	Asp	3	Asn=2,Asp=14827,Xaa=35	14864	View SF
+446	446	Asp	3	Ala=2,Asp=14827,Xaa=35	14864	View SF
+447	447	Phe	3	Leu=1,Phe=14826,Tyr=2,Xaa=35	14864	View SF
+448	448	Ala	3	Ala=14824,Leu=1,Val=2,Xaa=37	14864	View SF
+449	449	Leu	2	Leu=14830,Ser=1,Xaa=33	14864	View SF
+450	450	Ile	2	Ile=14828,Val=2,Xaa=33	14863	View SF
+451	451	Val	4	Leu=10,Met=6,Val=14811,Xaa=36	14863	View SF
+452	452	Asn	2	Asn=14828,Thr=2,Xaa=33	14863	View SF
+453	453	Ala	3	Ala=14827,Ser=2,Xaa=34	14863	View SF
+454	454	Pro	14	Gln=34,Leu=2,Pro=14624,Ser=168,Xaa=35	14863	View SF
+455	455	Asn	4	Asn=14802,Asp=17,Ser=8,Thr=2,Xaa=34	14863	View SF
+456	456	His	76	Asn=14,Gln=2,His=11847,Phe=12,Tyr=2952,Xaa=36	14863	View SF
+457	457	Glu	78	Ala=3020,Asp=20,Glu=11769,Gly=6,Lys=4,Ser=4,Thr=2,Val=2,Xaa=36	14863	View SF
+458	458	Gly	3	Glu=4,Gly=14826,Xaa=33	14863	View SF
+459	459	Ile	3	Ile=14824,Val=4,Xaa=35	14863	View SF
+460	460	Gln	3	Gln=14816,Lys=8,Xaa=38	14862	View SF
+461	461	Ala	3	Ala=14824,Ser=2,Thr=2,Val=2,Xaa=32	14862	View SF
+462	462	Gly	2	Arg=2,Gly=14832,Xaa=28	14862	View SF
+463	463	Val	2	Val=14835,Xaa=27	14862	View SF
+464	464	Asp	5	Asn=48,Asp=14784,Xaa=30	14862	View SF
+465	465	Arg	3	Arg=14817,Gly=2,Lys=17,Xaa=26	14862	View SF
+466	466	Phe	2	Phe=14835,Tyr=3,Xaa=24	14862	View SF
+467	467	Tyr	2	Asn=2,Tyr=14839,Xaa=21	14862	View SF
+468	468	Arg	2	Arg=14841,Xaa=21	14862	View SF
+469	469	Thr	4	Ala=20,Ile=8,Thr=14813,Xaa=21	14862	View SF
+470	470	Cys	1	Cys=14845,Xaa=17	14862	View SF
+471	471	Lys	2	Arg=5,Gln=2,Lys=14837,Xaa=18	14862	View SF
+472	472	Leu	1	Leu=14845,Xaa=17	14862	View SF
+473	473	Val	79	His=2,Ile=2,Leu=3290,Met=13,Val=11533,Xaa=22	14862	View SF
+474	474	Gly	1	Gly=14843,Xaa=19	14862	View SF
+475	475	Ile	2	Ile=14841,Val=3,Xaa=19	14863	View SF
+476	476	Asn	2	Asn=14842,Ser=2,Xaa=19	14863	View SF
+477	477	Met	2	Met=14841,Xaa=22	14863	View SF
+478	478	Ser	1	Ser=14844,Xaa=19	14863	View SF
+479	479	Lys	1	Lys=14844,Xaa=19	14863	View SF
+480	480	Lys	6	Arg=80,Lys=14761,Xaa=22	14863	View SF
+481	481	Lys	2	Arg=2,Lys=14841,Xaa=20	14863	View SF
+482	482	Ser	1	Ser=14843,Xaa=20	14863	View SF
+483	483	Tyr	1	Tyr=14844,Xaa=19	14863	View SF
+484	484	Ile	3	Ile=14820,Met=20,Val=2,Xaa=21	14863	View SF
+485	485	Asn	1	Asn=14843,Xaa=20	14863	View SF
+486	486	Lys	78	Arg=3340,Lys=11504,Xaa=19	14863	View SF
+487	487	Thr	2	Thr=14838,Xaa=25	14863	View SF
+488	488	Gly	2	Gly=14841,Xaa=22	14863	View SF
+489	489	Thr	1	Thr=14843,Xaa=20	14863	View SF
+490	490	Phe	2	Leu=4,Phe=14839,Xaa=20	14863	View SF
+491	491	Glu	2	Gln=2,Glu=14834,Gly=1,Lys=6,Xaa=20	14863	View SF
+492	492	Phe	2	Ile=1,Phe=14838,Ser=2,Xaa=22	14863	View SF
+493	493	Thr	2	Thr=14841,Xaa=22	14863	View SF
+494	494	Ser	2	Cys=2,Ser=14836,Xaa=25	14863	View SF
+495	495	Phe	6	Leu=16,Phe=14765,Val=4,Xaa=78	14863	View SF
+496	496	Phe	8	Leu=3,Phe=14722,Xaa=138	14863	View SF
+497	497	Tyr	3	Asn=12,Tyr=14817,Xaa=34	14863	View SF
+498	498	Arg	2	Arg=14840,Xaa=23	14863	View SF
+499	499	Tyr	2	Cys=2,His=2,Ser=2,Tyr=14837,Xaa=20	14863	View SF
+500	500	Gly	2	Arg=2,Gly=14841,Xaa=20	14863	View SF
+501	501	Phe	2	Phe=14840,Xaa=22	14862	View SF
+502	502	Val	2	Ala=2,Val=14839,Xaa=21	14862	View SF
+503	503	Ala	2	Ala=14837,Ser=2,Val=2,Xaa=21	14862	View SF
+504	504	Asn	2	Asn=14838,Asp=2,Xaa=22	14862	View SF
+505	505	Phe	2	Leu=2,Phe=14842,Xaa=18	14862	View SF
+506	506	Ser	1	Gly=2,Ser=14844,Xaa=16	14862	View SF
+507	507	Met	2	Ile=2,Met=14844,Thr=2,Val=2,Xaa=12	14862	View SF
+508	508	Glu	1	Asp=6,Glu=14844,Xaa=12	14862	View SF
+509	509	Leu	1	Leu=14850,Xaa=12	14862	View SF
+510	510	Pro	2	Pro=14841,Ser=2,Val=6,Xaa=13	14862	View SF
+511	511	Ser	3	Asn=10,Cys=2,Ile=4,Ser=14831,Xaa=15	14862	View SF
+512	512	Phe	2	Ala=2,Leu=7,Phe=14840,Val=2,Xaa=11	14862	View SF
+513	513	Gly	1	Del=1,Gly=14850,Xaa=11	14862	View SF
+514	514	Val	2	Ala=2,Del=1,Leu=2,Met=4,Phe=2,Ser=1,Val=14840,Xaa=10	14862	View SF
+515	515	Ser	6	Ala=69,Del=2,Leu=2,Pro=4,Ser=14775,Xaa=10	14862	View SF
+516	516	Gly	1	Arg=2,Del=2,Gly=14846,Val=2,Xaa=10	14862	View SF
+517	517	Val	26	Ala=2,Del=1,Ile=584,Leu=6,Ser=2,Val=14256,Xaa=11	14862	View SF
+518	518	Asn	1	Asn=14851,Del=1,Xaa=10	14862	View SF
+519	519	Glu	1	Del=1,Glu=14851,Xaa=10	14862	View SF
+520	520	Ser	1	Del=1,Ser=14851,Xaa=10	14862	View SF
+521	521	Ala	2	Ala=14841,Asp=4,Del=1,Ser=2,Thr=4,Xaa=10	14862	View SF
+522	522	Asp	1	Asp=14849,Del=1,Gly=2,Xaa=10	14862	View SF
+523	523	Met	1	Del=1,Leu=4,Met=14847,Xaa=10	14862	View SF
+524	524	Ser	3	Asn=6,Cys=2,Del=1,Gly=16,Ile=2,Ser=14825,Xaa=10	14862	View SF
+525	525	Ile	4	Del=1,Ile=14811,Met=4,Val=36,Xaa=10	14862	View SF
+526	526	Gly	1	Del=1,Gly=14850,Val=1,Xaa=10	14862	View SF
+527	527	Val	5	Ala=10,Del=1,Ile=52,Leu=2,Val=14787,Xaa=10	14862	View SF
+528	528	Thr	1	Ala=4,Del=1,Thr=14848,Xaa=10	14863	View SF
+529	529	Val	1	Del=1,Met=2,Val=14850,Xaa=10	14863	View SF
+530	530	Ile	1	Del=1,Ile=14849,Val=2,Xaa=11	14863	View SF
+531	531	Lys	8	Arg=128,Asn=2,Del=1,Lys=14722,Xaa=10	14863	View SF
+532	532	Asn	1	Asn=14848,Asp=2,Del=1,Thr=2,Xaa=10	14863	View SF
+533	533	Asn	1	Asn=14848,Del=1,Ile=2,Ser=2,Xaa=10	14863	View SF
+534	534	Met	1	Del=1,Leu=2,Met=14850,Xaa=10	14863	View SF
+535	535	Ile	3	Del=1,Ile=14827,Met=4,Thr=4,Val=17,Xaa=10	14863	View SF
+536	536	Asn	1	Asn=14851,Del=1,Xaa=11	14863	View SF
+537	537	Asn	2	Asn=14834,Del=1,Ser=18,Xaa=10	14863	View SF
+N/A	-N/A-	-	0	Asp=2,Del=14861	14863	N/A
+N/A	-N/A-	-	0	Del=14861,Leu=2	14863	N/A
+538	538	Asp	2	Asp=14844,Del=1,Glu=6,Gly=2,Xaa=10	14863	View SF
+539	539	Leu	1	Del=1,Leu=14852,Xaa=10	14863	View SF
+540	540	Gly	1	Del=1,Gly=14852,Xaa=10	14863	View SF
+541	541	Pro	1	Del=1,His=2,Pro=14850,Xaa=10	14863	View SF
+542	542	Ala	1	Ala=14850,Del=1,Gln=2,Xaa=10	14863	View SF
+543	543	Thr	1	Arg=2,Del=1,Thr=14847,Xaa=12	14862	View SF
+544	544	Ala	2	Ala=14843,Del=1,Pro=2,Xaa=16	14862	View SF
+545	545	Gln	1	Del=1,Gln=14845,His=2,Xaa=14	14862	View SF
+546	546	Met	3	Asn=2,Del=1,Ile=2,Leu=12,Met=14831,Xaa=14	14862	View SF
+547	547	Ala	2	Ala=14835,Del=1,Gly=2,Ser=8,Val=2,Xaa=14	14862	View SF
+548	548	Leu	2	Del=1,Ile=2,Leu=14841,Ser=2,Xaa=16	14862	View SF
+549	549	Gln	1	Del=1,Gln=14845,His=1,Ser=2,Xaa=13	14862	View SF
+550	550	Leu	2	Del=1,Leu=14843,Met=2,Xaa=16	14862	View SF
+551	551	Phe	1	Del=1,Phe=14845,Xaa=15	14861	View SF
+552	552	Ile	2	Del=1,Ile=14839,Thr=2,Val=4,Xaa=15	14861	View SF
+553	553	Lys	1	Arg=2,Del=1,Lys=14843,Xaa=15	14861	View SF
+554	554	Asp	1	Asn=2,Asp=14845,Del=1,Gly=2,Xaa=12	14862	View SF
+555	555	Tyr	1	Del=1,Phe=1,Tyr=14850,Xaa=10	14862	View SF
+556	556	Arg	1	Arg=14849,Del=1,Xaa=12	14862	View SF
+557	557	Tyr	1	Del=1,Tyr=14849,Xaa=12	14862	View SF
+558	558	Thr	1	Del=1,Ile=4,Thr=14845,Xaa=12	14862	View SF
+559	559	Tyr	1	Del=1,Tyr=14849,Xaa=12	14862	View SF
+560	560	Arg	1	Arg=14849,Del=1,Xaa=12	14862	View SF
+561	561	Cys	1	Cys=14849,Del=1,Gly=2,Xaa=10	14862	View SF
+562	562	His	1	Del=1,His=14847,Pro=2,Xaa=12	14862	View SF
+563	563	Arg	23	Arg=14427,Del=1,Gly=2,Ile=102,Lys=303,Met=2,Xaa=25	14862	View SF
+564	564	Gly	1	Del=1,Gly=14849,Xaa=12	14862	View SF
+565	565	Asp	1	Asp=14847,B=1,Del=1,Xaa=13	14862	View SF
+566	566	Thr	5	Ala=57,Del=1,Ile=2,Ser=4,Thr=14790,Xaa=8	14862	View SF
+567	567	Gln	2	Arg=2,Del=1,Gln=14845,Glu=6,Leu=2,Xaa=6	14862	View SF
+568	568	Ile	1	Del=1,Ile=14845,Thr=4,Val=6,Xaa=6	14862	View SF
+569	569	Gln	1	Arg=4,Del=1,Gln=14849,Lys=2,Xaa=6	14862	View SF
+570	570	Thr	1	Asn=2,Del=1,Thr=14853,Xaa=6	14862	View SF
+571	571	Arg	2	Arg=14836,Del=1,Gln=2,Leu=2,Lys=13,Xaa=9	14863	View SF
+572	572	Arg	1	Arg=14857,Del=1,Xaa=5	14863	View SF
+573	573	Ser	1	Del=1,Leu=2,Ser=14849,Thr=4,Xaa=7	14863	View SF
+574	574	Phe	1	Del=1,Leu=4,Phe=14847,Ser=5,Xaa=5	14862	View SF
+575	575	Glu	1	Del=1,Glu=14854,Xaa=7	14862	View SF
+576	576	Leu	77	Del=1,Ile=3302,Leu=11549,Val=4,Xaa=6	14862	View SF
+577	577	Lys	4	Arg=28,Asn=13,Del=1,Gln=2,Lys=14813,Xaa=5	14862	View SF
+578	578	Lys	4	Arg=14,Asn=4,Del=1,Gln=2,Glu=12,Lys=14816,Ser=8,Xaa=5	14862	View SF
+579	579	Leu	1	Del=1,Ile=2,Leu=14856,Xaa=3	14862	View SF
+580	580	Trp	1	Del=1,Trp=14856,Xaa=5	14862	View SF
+581	581	Asp	23	Asn=48,Asp=14402,B=2,Del=1,Glu=379,Gly=22,Val=2,Xaa=6	14862	View SF
+582	582	Gln	0	Del=1,Gln=14860,Xaa=1	14862	View SF
+583	583	Thr	0	Ala=1,Del=1,Thr=14858,Xaa=2	14862	View SF
+584	584	Gln	83	Arg=3232,Cys=2,Del=1,Gln=11505,His=110,Ile=1,Leu=6,Lys=4,Xaa=1	14862	View SF
+585	585	Ser	0	Del=1,Ser=14858,Thr=2,Xaa=1	14862	View SF
+586	586	Lys	2	Arg=24,Del=1,Lys=14836,Xaa=1	14862	View SF
+587	587	Val	97	Ala=3397,Del=1,Gly=219,Ile=36,Ser=12,Thr=106,Val=11089,Xaa=2	14862	View SF
+588	588	Gly	0	Del=1,Gly=14858,Xaa=3	14862	View SF
+589	589	Leu	1	Del=1,Leu=14857,Val=2,Xaa=3	14863	View SF
+590	590	Leu	0	Del=1,Leu=14860,Xaa=2	14863	View SF
+591	591	Val	4	Del=1,Ile=60,Val=14800,Xaa=2	14863	View SF
+592	592	Ser	1	Ala=2,Del=1,Phe=2,Ser=14857,Xaa=1	14863	View SF
+593	593	Asp	0	Asp=14858,Del=1,Gly=2,Xaa=1	14862	View SF
+594	594	Gly	1	Del=1,Gly=14856,Xaa=5	14862	View SF
+595	595	Gly	1	Ala=2,Arg=2,Del=1,Gly=14854,Xaa=3	14862	View SF
+596	596	Pro	1	Del=1,Pro=14845,Ser=13,Xaa=3	14862	View SF
+597	597	Asn	0	Asn=14858,Del=1,Xaa=3	14862	View SF
+598	598	Leu	1	Del=1,Ile=1,Leu=14852,Val=4,Xaa=4	14862	View SF
+599	599	Tyr	1	Del=1,Phe=4,Tyr=14853,Xaa=4	14862	View SF
+600	600	Asn	1	Asn=14856,Del=1,Xaa=5	14862	View SF
+601	601	Ile	1	Del=1,Ile=14850,Val=6,Xaa=5	14862	View SF
+602	602	Arg	0	Arg=14857,Del=1,Pro=2,Xaa=2	14862	View SF
+603	603	Asn	0	Asn=14859,Del=1,Xaa=2	14862	View SF
+604	604	Leu	1	Del=1,Leu=14857,Phe=1,Pro=2,Xaa=1	14862	View SF
+605	605	His	0	Del=1,Gln=3,His=14857,Xaa=1	14862	View SF
+606	606	Ile	2	Del=1,Ile=14843,Leu=4,Met=2,Thr=4,Val=4,Xaa=4	14862	View SF
+607	607	Pro	0	Del=1,Pro=14860,Xaa=1	14862	View SF
+608	608	Glu	3	Del=1,Glu=14826,Gly=32,Xaa=3	14862	View SF
+609	609	Val	4	Ala=14,Del=1,His=30,Ile=4,Val=14810,Xaa=3	14862	View SF
+610	610	Cys	2	Cys=14840,Del=1,Ser=20,Xaa=1	14862	View SF
+611	611	Leu	1	Del=1,Ile=8,Leu=14848,Xaa=5	14862	View SF
+612	612	Lys	0	Del=1,Glu=1,Lys=14860	14862	View SF
+613	613	Trp	0	Del=1,Trp=14857,Xaa=4	14862	View SF
+614	614	Glu	8	Asp=127,Del=1,Glu=14721,Gly=6,Thr=1,Xaa=6	14862	View SF
+615	615	Leu	1	Del=2,Leu=14856,Val=2,Xaa=2	14862	View SF
+616	616	Met	0	Del=2,Met=14858,Xaa=2	14862	View SF
+617	617	Asp	1	Asp=14856,Del=2,Gly=2,Xaa=2	14862	View SF
+618	618	Asp	81	Asn=8,Asp=11462,Del=2,Glu=3340,Gly=12,Ile=4,Lys=24,Val=8,Xaa=2	14862	View SF
+619	619	Asp	5	Ala=4,Asn=27,Asp=14804,B=2,Del=2,Glu=6,Gly=11,Tyr=2,Xaa=4	14862	View SF
+620	620	Tyr	1	Del=2,Tyr=14854,Xaa=6	14862	View SF
+621	621	Arg	77	Arg=11542,Del=2,Gln=3311,Lys=3,Xaa=4	14862	View SF
+622	622	Gly	1	Del=2,Gly=14851,Val=2,Xaa=7	14862	View SF
+623	623	Arg	1	Arg=14853,Del=2,Ile=1,Xaa=6	14862	View SF
+624	624	Leu	2	Del=2,Ile=4,Leu=14840,Pro=2,Xaa=14	14862	View SF
+625	625	Cys	1	Cys=14852,Del=2,Tyr=2,Xaa=6	14862	View SF
+626	626	Asn	1	Asn=14855,Del=2,Ser=2,Xaa=3	14862	View SF
+627	627	Pro	2	Del=2,His=6,Pro=14844,Ser=4,Xaa=6	14862	View SF
+628	628	Leu	2	Del=2,Ile=2,Leu=14843,Ser=6,Val=2,Xaa=7	14862	View SF
+629	629	Asn	1	Asn=14847,Del=2,Xaa=13	14862	View SF
+630	630	Pro	1	Del=2,Leu=2,Pro=14846,Ser=1,Xaa=11	14862	View SF
+631	631	Phe	2	Del=2,Leu=2,Phe=14831,Xaa=27	14862	View SF
+632	632	Val	3	Ala=4,Del=2,Gly=8,Ile=1,Met=4,Val=14822,Xaa=21	14862	View SF
+633	633	Ser	10	Asn=52,Cys=2,Del=2,Gly=78,Ser=14705,Thr=4,Xaa=19	14862	View SF
+634	634	His	5	Arg=34,Del=2,Gln=2,His=14800,Tyr=4,Xaa=20	14862	View SF
+635	635	Lys	3	Arg=9,Del=2,Glu=2,Lys=14828,Xaa=21	14862	View SF
+636	636	Glu	3	Asp=8,Del=2,Glu=14821,Gly=14,Lys=2,Xaa=15	14862	View SF
+637	637	Ile	6	Del=2,Ile=14772,Phe=2,Thr=8,Val=74,Xaa=4	14862	View SF
+638	638	Asp	78	Asn=2,Asp=11489,Del=2,Glu=3357,Gly=8,Lys=2,Xaa=2	14862	View SF
+639	639	Ser	1	Del=2,Phe=4,Ser=14850,Tyr=6	14862	View SF
+640	640	Val	12	Ala=10,Del=2,Ile=10,Met=185,Val=14653,Xaa=2	14862	View SF
+641	641	Asn	0	Asn=14858,Del=2,Ser=2	14862	View SF
+642	642	Asn	23	Asn=14329,Del=2,His=2,Ser=528,Xaa=1	14862	View SF
+643	643	Ala	5	Ala=14779,Del=2,Ser=10,Thr=71	14862	View SF
+644	644	Val	3	Ala=2,Del=2,Met=30,Val=14826,Xaa=2	14862	View SF
+645	645	Val	103	Ala=20,Del=2,Ile=2017,Leu=3,Met=1411,Thr=2,Val=11407	14862	View SF
+646	646	Met	10	Del=2,Ile=180,Leu=2,Met=14670,Val=8	14862	View SF
+647	647	Pro	0	Asp=1,Del=1,Leu=2,Pro=14858	14862	View SF
+648	648	Ala	5	Ala=14795,Del=1,Gly=2,Pro=4,Ser=42,Thr=17,Xaa=1	14862	View SF
+649	649	His	1	Del=1,Gln=2,His=14856,Leu=2,Thr=1	14862	View SF
+650	650	Gly	0	Asp=2,Del=1,Gly=14859	14862	View SF
+651	651	Pro	0	Del=1,Pro=14860,Xaa=1	14862	View SF
+652	652	Ala	31	Ala=14113,Del=1,Ser=16,Thr=26,Val=696,Xaa=10	14862	View SF
+653	653	Lys	2	Arg=5,Asn=2,Del=1,Gln=4,Glu=2,Lys=14844,Ser=1,Xaa=3	14862	View SF
+654	654	Ser	84	Ala=12,Asn=3197,Del=1,Gly=8,Ile=99,Ser=11519,Thr=20,Xaa=5	14861	View SF
+655	655	Met	5	Del=1,Ile=13,Leu=3,Lys=2,Met=14796,Thr=4,Val=40,Xaa=2	14861	View SF
+656	656	Glu	0	Del=1,Glu=14858,Gly=2	14861	View SF
+657	657	Tyr	0	Del=1,Tyr=14858,Xaa=2	14861	View SF
+658	658	Asp	0	Asp=14856,Del=1,Glu=2,Gly=2	14861	View SF
+659	659	Ala	1	Ala=14855,Asp=2,Del=1,Val=2,Xaa=1	14861	View SF
+660	660	Val	2	Del=1,Ile=18,Val=14840,Xaa=2	14861	View SF
+661	661	Ala	2	Ala=14830,Del=1,Gly=12,Thr=16	14859	View SF
+662	662	Thr	1	Asn=2,Del=1,Ser=4,Thr=14852	14859	View SF
+663	663	Thr	1	Ala=6,Del=1,Ile=2,Thr=14850	14859	View SF
+664	664	His	0	Del=1,His=14856,Xaa=1	14858	View SF
+665	665	Ser	0	Del=1,Ser=14856,Xaa=1	14858	View SF
+666	666	Trp	1	Cys=2,Del=1,Trp=14851,Xaa=4	14858	View SF
+667	667	Ile	79	Del=1,Ile=11718,Leu=2,Ser=2,Thr=72,Val=3056,Xaa=7	14858	View SF
+668	668	Pro	2	Del=1,Pro=14826,Ser=16,Xaa=15	14858	View SF
+669	669	Lys	2	Arg=2,Asn=2,Del=1,Lys=14828,Thr=2,Xaa=22	14857	View SF
+670	670	Arg	1	Arg=14840,Del=1,Xaa=16	14857	View SF
+671	671	Asn	2	Asn=14837,Del=1,Xaa=19	14857	View SF
+672	672	Arg	1	Arg=14851,Del=1,His=2,Xaa=3	14857	View SF
+673	673	Ser	1	Del=1,Ser=14851,Xaa=5	14857	View SF
+674	674	Ile	1	Del=1,Ile=14846,Val=6,Xaa=4	14857	View SF
+675	675	Leu	0	Del=1,Leu=14855,Xaa=1	14857	View SF
+676	676	Asn	0	Asn=14855,Del=1,Xaa=1	14857	View SF
+677	677	Thr	0	Del=1,Thr=14852,Xaa=4	14857	View SF
+678	678	Ser	1	Asn=14,Del=1,Gly=2,Ser=14839,Xaa=1	14857	View SF
+679	679	Gln	1	Del=1,Gln=14851,His=1,Pro=1,Xaa=3	14857	View SF
+680	680	Arg	2	Arg=14831,Del=1,Lys=23,Xaa=2	14857	View SF
+681	681	Gly	0	Del=1,Gly=14853,Val=2,Xaa=1	14857	View SF
+682	682	Ile	11	Del=1,Ile=14642,Val=212,Xaa=2	14857	View SF
+683	683	Leu	1	Del=1,His=2,Ile=1,Leu=14848,Xaa=5	14857	View SF
+684	684	Glu	0	Del=1,Glu=14856	14857	View SF
+685	685	Asp	0	Asp=14856,Del=1	14857	View SF
+686	686	Glu	0	Asp=2,Del=1,Glu=14853,Xaa=1	14857	View SF
+687	687	Gln	2	Del=1,Gln=14824,His=28,Lys=2,Xaa=1	14856	View SF
+688	688	Met	2	Del=1,Ile=8,Met=14838,Val=6,Xaa=3	14856	View SF
+689	689	Tyr	1	Del=1,His=8,Tyr=14843,Xaa=3	14855	View SF
+690	690	Gln	1	Del=1,Gln=14845,His=2,Leu=4,Xaa=2	14854	View SF
+691	691	Lys	76	Arg=3246,Del=1,Lys=11603,Xaa=4	14854	View SF
+692	692	Cys	0	Cys=14809,Del=1	14810	View SF
+693	693	Cys	0	Arg=2,Cys=14807,Del=1	14810	View SF
+694	694	Asn	3	Asn=14774,Asp=2,Del=1,His=10,Ile=1,Ser=16,Thr=4,Tyr=2	14810	View SF
+695	695	Leu	1	Arg=1,Del=1,Ile=2,Leu=14802,Ser=2,Xaa=2	14810	View SF
+696	696	Phe	0	Del=1,Phe=14805,Xaa=3	14809	View SF
+697	697	Glu	1	Asp=2,Del=1,Glu=14795,Gly=4,Lys=2,Xaa=3	14807	View SF
+698	698	Lys	8	Arg=111,Asn=3,Del=1,Gln=4,Glu=4,Lys=14676,Thr=2,Xaa=5	14806	View SF
+699	699	Phe	0	Del=1,Phe=14804,Xaa=1	14806	View SF
+700	700	Phe	0	Del=1,Leu=2,Phe=14803	14806	View SF
+701	701	Pro	0	Del=1,Pro=14803,Ser=2	14806	View SF
+702	702	Ser	0	Del=1,Gly=2,Ser=14801,Xaa=2	14806	View SF
+703	703	Ser	0	Del=1,Ser=14803,Xaa=1	14805	View SF
+704	704	Ser	1	Del=1,Leu=2,Ser=14794,Thr=6,Xaa=2	14805	View SF
+705	705	Tyr	0	Del=1,Tyr=14804	14805	View SF
+706	706	Arg	1	Arg=14798,Del=1,Lys=4,Xaa=2	14805	View SF
+707	707	Arg	0	Arg=14800,Del=1,Gly=2,Xaa=2	14805	View SF
+708	708	Pro	0	Del=1,Pro=14800,Ser=4	14805	View SF
+709	709	Val	3	Ala=2,Del=1,Ile=32,Val=14765,Xaa=5	14805	View SF
+710	710	Gly	0	Del=1,Gly=14804	14805	View SF
+711	711	Ile	1	Del=1,Ile=14796,Leu=2,Met=2,Val=4	14805	View SF
+712	712	Ser	0	Del=1,Ser=14802,Xaa=2	14805	View SF
+713	713	Ser	1	Arg=2,Del=1,Gly=2,Ser=14798,Thr=2	14805	View SF
+714	714	Met	1	Del=1,Ile=2,Leu=1,Met=14797,Thr=2,Xaa=2	14805	View SF
+715	715	Val	3	Ala=20,Del=1,Met=17,Val=14765,Xaa=2	14805	View SF
+716	716	Glu	1	Asp=11,Del=1,Glu=14791,Gly=1	14804	View SF
+717	717	Ala	0	Ala=14801,Del=1,Xaa=2	14804	View SF
+718	718	Met	0	Del=1,Met=14801,Val=2	14804	View SF
+719	719	Val	14	Ala=2,Del=1,Ile=238,Met=19,Val=14544	14804	View SF
+720	720	Ser	0	Del=1,Phe=2,Ser=14800,Xaa=1	14804	View SF
+721	721	Arg	2	Arg=14777,Del=1,Lys=26	14804	View SF
+722	722	Ala	1	Ala=14796,Del=1,Gly=4,Thr=2,Xaa=1	14804	View SF
+723	723	Arg	4	Arg=14749,Del=1,Gln=48,Gly=2,Leu=2,Xaa=2	14804	View SF
+724	724	Ile	0	Del=1,Ile=14800,Val=2	14803	View SF
+725	725	Asp	0	Asp=14800,Del=1,Xaa=2	14803	View SF
+726	726	Ala	0	Ala=14798,Del=1,Thr=2,Val=2	14803	View SF
+727	727	Arg	0	Arg=14802,Del=1	14803	View SF
+728	728	Val	78	Del=1,Ile=3413,Val=11387,Xaa=2	14803	View SF
+729	729	Asp	1	Asn=2,Asp=14792,Del=1,Glu=6,Xaa=2	14803	View SF
+730	730	Phe	4	Del=1,Leu=1,Phe=14738,Ser=58,Xaa=5	14803	View SF
+731	731	Glu	0	Del=1,Glu=14798,Lys=2,Xaa=2	14803	View SF
+732	732	Ser	0	Del=1,Ser=14799,Xaa=2	14802	View SF
+733	733	Gly	1	Del=1,Glu=8,Gly=14791,Xaa=2	14802	View SF
+734	734	Arg	1	Arg=14789,Del=1,Gln=2,Leu=2,Lys=6,Trp=2	14802	View SF
+735	735	Ile	4	Del=1,Ile=14744,Phe=2,Thr=14,Val=37,Xaa=4	14802	View SF
+N/A	-N/A-	-	1	Del=14786,Gly=16	14802	N/A
+736	736	Lys	27	Arg=11,Asn=6,Gln=1,Glu=4,Gly=594,Lys=14179,Met=2,Thr=4,Xaa=1	14802	View SF
+N/A	-N/A-	-	1	Del=14785,Lys=16	14801	N/A
+737	737	Lys	19	Arg=428,Lys=14366,Xaa=7	14801	View SF
+738	738	Glu	1	Ala=2,Glu=14793,Gly=4,Lys=2	14801	View SF
+739	739	Glu	5	Asp=76,Glu=14716,Gly=6,Lys=3	14801	View SF
+740	740	Phe	1	Leu=6,Phe=14794	14800	View SF
+741	741	Ser	91	Ala=2662,Asn=2,Ser=11553,Thr=572,Val=4,Xaa=3	14796	View SF
+742	742	Glu	0	Asp=4,Glu=14791	14795	View SF
+743	743	Ile	1	Ile=14789,Thr=6	14795	View SF
+744	744	Met	6	Ile=35,Lys=1,Met=14708,Thr=14,Val=34,Xaa=2	14794	View SF
+745	745	Lys	1	Arg=12,Glu=2,Lys=14780	14794	View SF
+746	746	Ile	42	Ile=13516,Thr=1276	14792	View SF
+747	747	Cys	0	Cys=14790,Xaa=2	14792	View SF
+748	748	Ser	1	Phe=12,Ser=14778,Xaa=2	14792	View SF
+749	749	Thr	1	Ala=4,Pro=8,Thr=14779	14791	View SF
+750	750	Ile	0	Ile=14788,Phe=2	14790	View SF
+751	751	Glu	0	Glu=14784	14784	View SF
+752	752	Glu	71	Asp=2798,Glu=11975,Gly=8,Lys=2	14783	View SF
+753	753	Leu	5	Ile=54,Leu=14704,Phe=24	14782	View SF
+754	754	Arg	2	Arg=14750,Gly=14,Ile=2,Lys=12,Thr=2	14780	View SF
+755	755	Arg	0	Arg=14777,Gln=2	14779	View SF
+756	756	Gln	2	Gln=14755,His=6,Leu=6,Lys=5,Xaa=1	14773	View SF
+757	757	Lys	2	Arg=10,Asn=14,Gln=2,Lys=14632	14658	View SF
+758	-N/A-	Gln	73	Gln=24,Ile=2,Trp=2	28	N/A

@@ -1,0 +1,101 @@
+1	Met	0	Met=1717	1717	View SF
+2	Gly	24	Asp=1,Glu=60,Gly=1654,Val=2	1717	View SF
+3	Gln	0	Gln=1717	1717	View SF
+4	Glu	33	Glu=1612,Gly=105	1717	View SF
+5	Gln	4	Gln=1709,Leu=8	1717	View SF
+6	Gly	62	Asp=260,Gly=1456,Xaa=1	1717	View SF
+7	Thr	11	Ile=22,Thr=1694,Xaa=1	1717	View SF
+8	Pro	27	Ala=2,Gln=72,Leu=1,Pro=1642	1717	View SF
+9	Trp	1	Del=2,Trp=1715	1717	View SF
+10	Ile	23	Ile=1656,Lys=1,Met=2,Thr=58	1717	View SF
+11	Gln	45	Arg=4,Gln=1570,Glu=2,Leu=140,Xaa=1	1717	View SF
+12	Ser	12	Gln=2,Leu=18,Ser=1694,Xaa=3	1717	View SF
+13	Thr	24	Ala=1,Glu=2,Ile=58,Thr=1655,Xaa=1	1717	View SF
+14	Gly	21	Gln=2,Glu=53,Gly=1662	1717	View SF
+15	His	6	Arg=9,Asp=2,His=1706	1717	View SF
+16	Thr	100	Ile=822,Thr=895	1717	View SF
+17	Ser	22	Asn=44,Ile=8,Ser=1664,Xaa=1	1717	View SF
+18	Thr	14	Ile=32,Thr=1684,Xaa=1	1717	View SF
+19	Gln	5	Arg=2,Gln=1710,Leu=1,Pro=3,Xaa=1	1717	View SF
+20	Lys	10	Arg=12,Asn=1,Glu=1,Lys=1700,Thr=3,Xaa=1	1718	View SF
+21	Glu	84	Arg=105,Glu=1446,Gly=149,Lys=16,Trp=1,Xaa=1	1718	View SF
+22	Glu	24	Asp=1,Glu=1656,Gly=61,Xaa=1	1719	View SF
+23	Asp	37	Asn=16,Asp=1637,Gly=28,Ser=32,Tyr=4,Xaa=2	1719	View SF
+24	Gly	1	Gly=1717,Xaa=2	1719	View SF
+25	Gln	22	Arg=23,Gln=1670,Leu=24,Xaa=2	1719	View SF
+26	Lys	71	Arg=68,Gln=159,Glu=1,Ile=2,Lys=1487,Xaa=2	1719	View SF
+27	Ile	66	Ile=1443,Met=2,Thr=272,Xaa=2	1719	View SF
+28	Pro	31	Arg=6,Gln=57,Leu=11,Pro=1643,Xaa=2	1719	View SF
+29	Lys	11	Arg=20,Lys=1696,Xaa=3	1719	View SF
+30	Leu	85	Arg=373,Gln=16,Leu=1327,Pro=1,Xaa=2	1719	View SF
+31	Glu	19	Glu=1680,Gly=25,Lys=1,Val=12,Xaa=2	1720	View SF
+32	His	9	Arg=17,His=1702,Xaa=1	1720	View SF
+33	Arg	43	Arg=1619,Cys=4,His=48,Leu=4,Pro=39,Thr=6,Xaa=1	1721	View SF
+34	Asn	13	Asn=1692,Ser=28,Xaa=1	1721	View SF
+35	Ser	90	Leu=539,Ser=1181,Xaa=1	1721	View SF
+36	Thr	5	Ala=1,Ile=7,Thr=1712,Xaa=1	1721	View SF
+37	Gln	72	Arg=326,Gln=1392,Leu=1,Xaa=2	1721	View SF
+38	Leu	3	Leu=1716,Ser=4,Xaa=1	1721	View SF
+39	Met	3	Met=1730,Thr=3,Xaa=1	1734	View SF
+40	Gly	140	Ala=15,Asp=194,Gly=1009,Val=514,Xaa=2	1734	View SF
+41	His	83	Arg=12,His=1336,Pro=385,Xaa=1	1734	View SF
+42	Tyr	42	Cys=122,Phe=10,Tyr=1601,Xaa=1	1734	View SF
+43	Gln	111	Arg=522,Gln=1153,Leu=48,Pro=10,Xaa=1	1734	View SF
+44	Lys	25	Arg=56,Asn=1,Gln=4,Lys=1671,Thr=1,Xaa=1	1734	View SF
+45	Thr	18	Ala=2,Ile=38,Thr=1692,Xaa=2	1734	View SF
+46	Met	5	Met=1725,Thr=8,Xaa=1	1734	View SF
+47	Asn	12	Asn=1708,Ser=25,Xaa=1	1734	View SF
+48	Gln	30	Arg=65,Gln=1658,His=1,Leu=4,Pro=5,Xaa=1	1734	View SF
+49	Val	9	Ala=6,Leu=10,Val=1717,Xaa=1	1734	View SF
+50	Ala	78	Ala=1454,Asp=32,Gly=17,Val=229,Xaa=2	1734	View SF
+51	Met	3	Met=1729,Thr=4,Xaa=1	1734	View SF
+52	Pro	25	His=44,Leu=15,Pro=1673,Xaa=2	1734	View SF
+53	Lys	2	Arg=2,Lys=1731,Xaa=1	1734	View SF
+54	Gln	3	Arg=3,Gln=1729,Xaa=2	1734	View SF
+55	Ile	23	Asn=1,Ile=1673,Thr=58,Xaa=2	1734	View SF
+56	Val	9	Ala=17,Val=1715,Xaa=2	1734	View SF
+57	Tyr	24	Cys=3,Phe=13,Ser=37,Tyr=1678,Xaa=2	1733	View SF
+58	Trp	22	Lys=1,Trp=159,Xaa=4	164	View SF
+59	Arg	110	Arg=91,Lys=70,Xaa=3	164	View SF
+60	Xaa	166	Arg=74,Gln=63,Leu=21,Pro=5,Xaa=2	165	View SF
+61	Trp	9	Trp=163,Xaa=2	165	View SF
+62	Leu	87	Arg=10,Leu=138,Pro=16,Xaa=2	166	View SF
+63	Ser	9	Ser=164,Xaa=2	166	View SF
+64	Leu	42	Leu=154,Ser=10,Xaa=2	166	View SF
+65	Arg	67	Arg=141,Lys=23,Xaa=2	166	View SF
+66	Asn	5	Asn=165,Xaa=1	166	View SF
+67	Pro	5	Pro=165,Xaa=1	166	View SF
+68	Ile	83	Ile=127,Thr=38,Xaa=1	166	View SF
+69	Leu	115	Arg=1,Gln=35,Leu=119,Pro=10,Xaa=1	166	View SF
+70	Val	118	Ala=10,Glu=11,Gly=17,Val=127,Xaa=1	166	View SF
+71	Phe	115	Phe=116,Ser=38,Tyr=11,Xaa=1	166	View SF
+72	Leu	5	Leu=165,Xaa=1	166	View SF
+73	Lys	78	Arg=34,Lys=131,Xaa=1	166	View SF
+74	Thr	47	Ile=10,Pro=2,Thr=153,Xaa=1	166	View SF
+75	Arg	87	Arg=131,His=31,Leu=3,Xaa=1	166	View SF
+76	Val	75	Ala=31,Val=134,Xaa=1	166	View SF
+77	Leu	5	Leu=165,Xaa=1	166	View SF
+78	Lys	45	Arg=13,Lys=152,Xaa=1	166	View SF
+79	Arg	88	Arg=121,Gln=44,Xaa=1	166	View SF
+80	Trp	9	Trp=164,Xaa=2	166	View SF
+81	Arg	91	Arg=121,Lys=43,Xaa=2	166	View SF
+82	Leu	69	Leu=146,Pro=8,Ser=10,Xaa=2	166	View SF
+83	Phe	37	Phe=156,Ser=8,Xaa=2	166	View SF
+84	Ser	83	Asn=35,Ser=129,Xaa=2	166	View SF
+85	Lys	37	Arg=8,Lys=156,Xaa=2	166	View SF
+86	His	91	Arg=1,Gln=37,His=126,Xaa=2	166	View SF
+87	Glu	91	Glu=126,Gly=36,Xaa=4	166	View SF
+88	Trp	33	Lys=1,Trp=76,Xaa=3	80	N/A
+89	Thr	50	Ile=5,Thr=73,Xaa=2	80	N/A
+90	Asn	141	Asn=49,Asp=13,Ser=17,Xaa=1	80	N/A
+91	Xaa	0	Xaa=1	1	N/A
+92	Xaa	0	Xaa=1	1	N/A
+93	Lys	0	Lys=1	1	N/A
+94	Val	0	Val=1	1	N/A
+95	Ala	0	Ala=1	1	N/A
+96	Arg	0	Arg=1	1	N/A
+97	Leu	0	Leu=1	1	N/A
+98	Met	0	Met=1	1	N/A
+99	Ile	0	Ile=1	1	N/A
+100	Gly	0	Gly=1	1	N/A
+101	His	0	His=1	1	N/A
