@@ -1,5 +1,5 @@
 #Overview
---------
+```
 project
 	|- README          	# the top level description of content
 	|
@@ -8,7 +8,7 @@ project
 	|- results         	# all output from workflows and analyses
 	+- Makefile        	# executable Makefile for this study
     
---------
+```
 
 
 Each of the analyses done in the publication can be rerun using the steps in the provided Makefile. For each analysis we will provide the 'make' command that will complete the analysis as well as a figure highlighting what files are used for the analysis. More details regarding what each script does can be found as comments either in the script or in the resulting markdown document.
